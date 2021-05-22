@@ -3,6 +3,7 @@ package com.example.robotandroid;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public interface IRobot {
     public void creerGamme(Gamme g);
@@ -11,7 +12,7 @@ public interface IRobot {
 
     public void supprimerGamme(Gamme g);
 
-    public ArrayList<Gamme> recupererGammes();
+    public HashMap<String, Gamme> recupererGammes();
 
     public void connecter(String login, String pwd);
 
@@ -21,9 +22,9 @@ public interface IRobot {
 
     public void supprimerCompte(String login);
 
-    public ArrayList<String> recupererLogs();
+    public HashMap<String, String> recupererLogs();
 
-    public JSONObject recuprerStatut();
+    public JSONObject recupererStatut();
 
     void envoyerMessage(String message);
 }

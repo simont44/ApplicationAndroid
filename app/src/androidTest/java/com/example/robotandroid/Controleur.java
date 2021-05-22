@@ -1,18 +1,20 @@
 package com.example.robotandroid;
 
+import org.json.JSONObject;
 import java.util.HashMap;
 
-public class Controlleur {
+public class Controleur {
     IRobot robot;
     HashMap<String, Gamme> listeGammes;
     Utilisateur utilisateurConnecté;
+    String nom; //recuperer le nom rensigner par le robot
 
-
-    public Controleur(robot r)
+    public void Controleur(IRobot r)
     {
         this.robot = r;
         this.listeGammes = new HashMap<String, Gamme>();
-        this.utilisateurConnecté = new Utilisateur();
+        //on renseigne le nom et le type de l'utilisateur
+        this.utilisateurConnecté = new Utilisateur(nom , false);
         listeGammes = recupererGammes();
     }
 
@@ -53,8 +55,7 @@ public class Controlleur {
     }
 
 
-    public void creerCompte(String login, String pwd)
-    {
+    public void creerCompte(String login, String pwd) throws Exception {
         if(utilisateurConnecté.admin)
             robot.creerCompte(login, pwd);
         else
@@ -62,8 +63,7 @@ public class Controlleur {
     }
 
 
-    public void supprimerCompte(String login)
-    {
+    public void supprimerCompte(String login) throws Exception {
         if(utilisateurConnecté.admin)
             robot.supprimerCompte(login);
         else
@@ -73,12 +73,12 @@ public class Controlleur {
 
     public HashMap<String, String> recupererLogs()
     {
-        return robot.recupererLlogs(g);
+        return robot.recupererLogs();
     }
 
     public JSONObject recupererStatut()
     {
-        return robot.recupererStatut(g);
+        return robot.recupererStatut();
     }
 }
 

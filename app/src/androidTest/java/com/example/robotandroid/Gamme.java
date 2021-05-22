@@ -26,10 +26,11 @@ public class Gamme {
 
 
         public void SupprimerOperation(Operation o) throws Exception {
-            if(listeOperations.contains(o))
+            if (listeOperations.contains(o))
                 listeOperations.remove(o);
             else
                 throw new Exception("Cette opération n'est pas présente dans la gamme.");
+        }
 
 
 
