@@ -14,13 +14,13 @@ public class Operation {
 
     public void AjouterTache(Tache t)
     {
-        ListeTaches.add(o);
+        ListeTaches.add(t);
     }
 
 
     public void SupprimerTache(Tache t)
     {
-        ListeTaches.remove(o);
+        ListeTaches.remove(t);
     }
 }
 
