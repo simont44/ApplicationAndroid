@@ -12,12 +12,12 @@
     <action
         android:id="@+id/action_demarrage_to_gamme"
         app:destination="@id/menuGamme"></action>
-    <activity/>
     <activity
         android:id="@+id/menuGamme"
         android:name="com.example.robotandroid.MenuGamme"
         android:label="MenuGamme" />
     <action
         android:id="@+id/action_gamme_to_demarrage"
-        app:destination="@id/menuDemarrage" />
+        app:destination="@id/menuDemarrage"
+        app:launchSingleTop="false" />
 </navigation>
