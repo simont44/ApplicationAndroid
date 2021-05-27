@@ -3,39 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
-
-    <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.example.robotandroid.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
-
-        <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
-        <action
-            android:id="@+id/action_FirstFragment_to_MenuDemarrage"
-            app:destination="@id/Menu_Demarrage" />
-    </fragment>
-    <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.example.robotandroid.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
-
-        <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/Menu_Demarrage"
-        android:name="com.example.robotandroid.Menu_Demarrage"
-        android:label="@string/title_activity_menu_demarrage"
-        tools:layout="@layout/activity_menu_demarrage">
-
-        <action
-            android:id="@+id/action_MenuDemarrage_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
-    </fragment>
+    android:label="@string/title_activity_menu_demarrage"
+    app:startDestination="@id/menuDemarrage">
+    <activity
+        android:id="@+id/menuDemarrage"
+        android:name="com.example.robotandroid.MenuDemarrage"
+        android:label="MenuDemarrage" />
+    <action
+        android:id="@+id/action_demarrage_to_gamme"
+        app:destination="@id/menuGamme"></action>
+    <activity/>
+    <activity
+        android:id="@+id/menuGamme"
+        android:name="com.example.robotandroid.MenuGamme"
+        android:label="MenuGamme" />
+    <action
+        android:id="@+id/action_gamme_to_demarrage"
+        app:destination="@id/menuDemarrage" />
 </navigation>
