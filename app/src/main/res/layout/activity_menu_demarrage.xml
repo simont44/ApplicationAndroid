@@ -19,12 +19,26 @@
         app:layout_constraintVertical_bias="0.896" />
 
     <Button
-        android:id="@+id/buttonConnect"
+        android:id="@+id/buttonDemo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/connexion"
+        android:text="Demo"
         app:layout_constraintBottom_toBottomOf="@+id/buttonGamme"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.527"
         app:layout_constraintStart_toEndOf="@+id/buttonGamme"
-        app:layout_constraintTop_toTopOf="@+id/buttonGamme" />
+        app:layout_constraintTop_toTopOf="@+id/buttonGamme"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/buttonConnect"
+        android:layout_width="132dp"
+        android:layout_height="51dp"
+        android:text="Connexion"
+        app:layout_constraintBottom_toTopOf="@+id/buttonDemo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.889"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.054" />
 </androidx.constraintlayout.widget.ConstraintLayout>
