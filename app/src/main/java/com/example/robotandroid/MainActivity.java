@@ -2,6 +2,7 @@ package com.example.robotandroid;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -14,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText loginEditText;
     private EditText passwordEditText;
     private Button connexionButton;
-    private Boolean loginVerif, passwordVerif;
+    private Button retourButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
         loginEditText=(EditText) findViewById(R.id.connexion_login_input);
         passwordEditText=(EditText) findViewById(R.id.connexion_password_input);
         connexionButton=(Button) findViewById(R.id.connexion_submit_btn);
+        retourButton=(Button) findViewById(R.id.connexion_retour_btn);
         connexionButton.setEnabled(false);
 
         loginEditText.addTextChangedListener(new TextWatcher() {
@@ -44,12 +46,19 @@ public class MainActivity extends AppCompatActivity {
         connexionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
             }
         });
 
+        retourButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OpenListeAppareilWifi();
+            }
+        });
 
-
-
+    }
+    public void OpenListeAppareilWifi(){
+        Intent listeAppareilWifi = new Intent(this, com.example.robotandroid.listeAppareilWifi.class);
+        startActivity(listeAppareilWifi);
     }
 }

@@ -4,4 +4,6 @@
     <string name="identifiant">Identifiant</string>
     <string name="retour">retour</string>
     <string name="password">Mot de passe</string>
+    <string name="labelSpinnerListeAppareil">Liste des appareils wifi</string>
+
 </resources>
