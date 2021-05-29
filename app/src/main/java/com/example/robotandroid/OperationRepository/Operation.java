@@ -1,14 +1,19 @@
-package com.example.robotandroid;
+package com.example.robotandroid.OperationRepository;
 
+import com.example.robotandroid.Tache;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Operation {
+public class Operation implements Serializable {
     ArrayList<Tache> ListeTaches;
     String titre;
     String description;
 
     public Operation(String titre, String description)
     {
+        this.titre = titre;
+        this.description = description;
         ListeTaches = new ArrayList<Tache>();
     }
 

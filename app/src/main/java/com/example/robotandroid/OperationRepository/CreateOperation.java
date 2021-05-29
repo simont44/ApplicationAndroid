@@ -1,4 +1,4 @@
-package com.example.robotandroid;
+package com.example.robotandroid.OperationRepository;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,12 +8,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-public class MenuOperation extends AppCompatActivity {
+import com.example.robotandroid.MenuDemarrage;
+import com.example.robotandroid.MenuGamme;
+import com.example.robotandroid.MenuTache;
+import com.example.robotandroid.R;
+
+public class CreateOperation extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu_operation);
+        setContentView(R.layout.activity_create_operation);
 
         ImageButton buttonMenu = findViewById(R.id.imageButton_menu);
         buttonMenu.setOnClickListener(new View.OnClickListener() {

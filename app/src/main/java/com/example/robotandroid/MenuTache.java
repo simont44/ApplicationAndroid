@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.example.robotandroid.OperationRepository.CreateOperation;
+
 public class MenuTache extends AppCompatActivity {
 
     @Override
@@ -32,7 +34,7 @@ public class MenuTache extends AppCompatActivity {
     }
     public void RetourMenuOpe()
     {
-        Intent menuOpe = new Intent(this, MenuOperation.class);
+        Intent menuOpe = new Intent(this, CreateOperation.class);
         startActivity(menuOpe);
         finish();
     }
@@ -40,7 +42,7 @@ public class MenuTache extends AppCompatActivity {
     public void ValiderTache()
     {
         //Sauvegarde de la tache à faire
-        Intent menuOpe = new Intent(this, MenuOperation.class);
+        Intent menuOpe = new Intent(this, CreateOperation.class);
         startActivity(menuOpe);
         finish();
     }

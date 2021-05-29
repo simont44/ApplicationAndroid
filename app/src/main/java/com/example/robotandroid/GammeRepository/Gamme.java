@@ -1,10 +1,11 @@
 package com.example.robotandroid.GammeRepository;
 
-import com.example.robotandroid.Operation;
+import com.example.robotandroid.OperationRepository.Operation;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Gamme {
+public class Gamme implements Serializable {
 
         String id;
         String description;
@@ -33,7 +34,6 @@ public class Gamme {
             else
                 throw new Exception("Cette opération n'est pas présente dans la gamme.");
         }
-
 
 
 }

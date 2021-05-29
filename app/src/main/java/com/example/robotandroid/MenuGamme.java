@@ -2,28 +2,20 @@ package com.example.robotandroid;
 
 import
         androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.AssetManager;
+import android.graphics.Path;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.example.robotandroid.GammeRepository.CreateGamme;
 import com.example.robotandroid.GammeRepository.Gamme;
 import com.example.robotandroid.GammeRepository.GammeAdapter;
+import com.example.robotandroid.OperationRepository.Operation;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,7 +49,13 @@ public class MenuGamme extends AppCompatActivity {
         //Jeu de données temporaire
        List<Gamme> listeGamme = new ArrayList<>();
        Gamme gamme2 = new Gamme("2", "C est encore un test");
-       listeGamme.add(gamme2);
+       Operation op1 = new Operation("Tourner","ça tourne");
+        try {
+            gamme2.AjouterOperation(op1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        listeGamme.add(gamme2);
        String s = JSONManager.SendDataJson(listeGamme);  //On met ce qu'on reçoit de la base de données
 
       // String s = "{\"description\":\"Test rotation\",\"id\":\"1\",\"listeOperations\":[{\"ListeTaches\":[{\"typeAction\":\"Tourner\",\"valeur\":12},{\"typeAction\":\"Attendre\",\"valeur\":5}]},{\"ListeTaches\":[{\"typeAction\":\"Tourner\",\"valeur\":24}]}]}\n";
@@ -71,11 +69,15 @@ public class MenuGamme extends AppCompatActivity {
         startActivity(menu);
         finish();
     }
+    //a copier pour les taches
     public void CreateGamme()
     {
+        Gamme gamme = new Gamme("nouveau","nouveau");
         Intent menuCreate = new Intent(this, CreateGamme.class);
+        menuCreate.putExtra("extragamme",gamme);
         startActivity(menuCreate);
     }
+
 
     private void ApplyGammeAdapter(List<Gamme> list){
         //Appel à la sauvegarde des gammes

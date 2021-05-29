@@ -10,8 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.RobotAndroid">
-        <activity android:name=".MenuTache"></activity>
-        <activity android:name=".MenuOperation" />
+        <activity android:name=".MenuTache" />
         <activity android:name=".GammeRepository.CreateGamme" />
         <activity
             android:name=".MenuDemarrage"
