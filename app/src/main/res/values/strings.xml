@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Robot android</string>
+    <string name="seConnecter">Se connecter</string>
+    <string name="identifiant">Identifiant</string>
+    <string name="retour">retour</string>
+    <string name="password">Mot de passe</string>
 </resources>
