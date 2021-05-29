@@ -10,18 +10,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.RobotAndroid">
+        <activity android:name=".MenuTache"></activity>
+        <activity android:name=".MenuOperation" />
+        <activity android:name=".GammeRepository.CreateGamme" />
         <activity
             android:name=".MenuDemarrage"
             android:label="MenuDemarrage">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"></action>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".MenuGamme"
-            android:label="MenuGamme"/>
-
+            android:label="MenuGamme" />
     </application>
 
 </manifest>

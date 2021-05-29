@@ -2,6 +2,8 @@ package com.example.robotandroid.GammeRepository;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,14 +11,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.robotandroid.GammeRepository.Gamme;
 import com.example.robotandroid.R;
 
+import org.w3c.dom.Text;
+
 public class GammeViewHolder extends RecyclerView.ViewHolder {
 
-    Context context;
     private Gamme unegamme;
+    private TextView TextViewGamme;
+    private Button ButtonUpdate;
+    private Button buttonExec;
 
     public GammeViewHolder(View itemView) {
         super(itemView);
-
+       TextViewGamme = itemView.findViewById(R.id.TextViewLabelGamme);
+       ButtonUpdate = itemView.findViewById(R.id.ButtonUpdate);
+       buttonExec = itemView.findViewById(R.id.buttonExec);
     }
 
     public Gamme getUnegamme() {
@@ -30,8 +38,7 @@ public class GammeViewHolder extends RecyclerView.ViewHolder {
     public void UpdateVisual(Gamme unegamme)
     {
         this.unegamme = unegamme;
-        TextView TV = context.findViewById(R.id.TextViewLabelGamme);
-        //Mettre à jour le visuel
+        TextViewGamme.setText(unegamme.description);
     }
 
 }

@@ -4,9 +4,10 @@ import java.util.ArrayList;
 
 public class Operation {
     ArrayList<Tache> ListeTaches;
+    String titre;
+    String description;
 
-
-    public Operation()
+    public Operation(String titre, String description)
     {
         ListeTaches = new ArrayList<Tache>();
     }

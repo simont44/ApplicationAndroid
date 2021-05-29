@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MenuOperation">
+
+    <TextView
+        android:id="@+id/textView_titreoperation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Titre Opération"
+        app:layout_constraintBottom_toTopOf="@+id/textView_descriptionOperation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.141"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton_menu" />
+
+    <EditText
+        android:id="@+id/editText_Titreoperation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Titre"
+        app:layout_constraintBottom_toTopOf="@+id/editText_descriptionOperation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView_titreoperation"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton_menu" />
+
+    <EditText
+        android:id="@+id/editText_descriptionOperation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_descriptionOperation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView_descriptionOperation"
+        app:layout_constraintTop_toTopOf="@+id/textView_descriptionOperation" />
+
+    <TextView
+        android:id="@+id/textView_descriptionOperation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Description"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.197"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.387" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_listetâche"
+        android:layout_width="352dp"
+        android:layout_height="327dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_descriptionOperation"
+        app:layout_constraintVertical_bias="0.187" />
+
+    <Button
+        android:id="@+id/button_valider"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Valider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView_listetâche" />
+
+    <Button
+        android:id="@+id/button_createTache"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Créer tâche"
+        app:layout_constraintBottom_toBottomOf="@+id/recyclerView_listetâche"
+        app:layout_constraintEnd_toEndOf="@+id/recyclerView_listetâche" />
+
+    <ImageButton
+        android:id="@+id/imageButton_menu"
+        android:layout_width="99dp"
+        android:layout_height="89dp"
+        android:layout_marginTop="16dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.948"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/maison" />
+
+    <ImageButton
+        android:id="@+id/imageButton_retourGamme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/textView_titreoperation"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton_menu"
+        app:layout_constraintHorizontal_bias="0.187"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.269"
+        app:srcCompat="@android:drawable/ic_menu_revert" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
