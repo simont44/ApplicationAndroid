@@ -9,17 +9,13 @@ import java.util.List;
 public class JSONManager {
 
 
-    public static String SendDataJson(Object unobjet )
+    public static String SendDataJson(MessageJSON msg)
     {
         Gson gson = new Gson();
-        String json = gson.toJson(unobjet);
+        String json = gson.toJson(msg);
         return json;
 
         //Update pour envoyer au robot
-    }
-    public static void ReadDataJson()
-    {
-
     }
 
     // Récuperer liste Gamme

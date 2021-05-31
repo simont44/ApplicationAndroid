@@ -58,10 +58,9 @@ public class MenuGamme extends AppCompatActivity {
             e.printStackTrace();
         }
         listeGamme.add(gamme2);
-       String s = JSONManager.SendDataJson(listeGamme);  //On met ce qu'on reçoit de la base de données
-
+      //   String s = JSONManager.SendDataJson(listeGamme);  //On met ce qu'on reçoit de la base de données
       // String s = "{\"description\":\"Test rotation\",\"id\":\"1\",\"listeOperations\":[{\"ListeTaches\":[{\"typeAction\":\"Tourner\",\"valeur\":12},{\"typeAction\":\"Attendre\",\"valeur\":5}]},{\"ListeTaches\":[{\"typeAction\":\"Tourner\",\"valeur\":24}]}]}\n";
-       listeGamme= JSONManager.ConvertStringToListGamme(s);
+      //  listeGamme= JSONManager.ConvertStringToListGamme(s);
 
         ApplyGammeAdapter(listeGamme);
     }
