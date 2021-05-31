@@ -7,8 +7,6 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.robotandroid.GammeRepository.CreateGamme;
-import com.example.robotandroid.GammeRepository.Gamme;
 import com.example.robotandroid.R;
 
 public class OperationViewHolder extends RecyclerView.ViewHolder {
@@ -47,8 +45,8 @@ public class OperationViewHolder extends RecyclerView.ViewHolder {
     //On envoie sur l'activité de création en donnant les fichiers en paramètres
     public  void GoToEditerOperation()
     {
-        Intent menuEdit = new Intent(TextViewOperation.getContext(), CreateGamme.class);
-        menuEdit.putExtra("extraope",this.uneoperation);
-        itemView.getContext().startActivity(menuEdit);
+        Intent intent = new Intent(TextViewOperation.getContext(), EditOperation.class);
+        intent.putExtra("extraope",this.uneoperation);
+        itemView.getContext().startActivity(intent);
     }
 }

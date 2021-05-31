@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.robotandroid.MenuDemarrage;
-import com.example.robotandroid.OperationRepository.CreateOperation;
+import com.example.robotandroid.OperationRepository.EditOperation;
 import com.example.robotandroid.OperationRepository.Operation;
 import com.example.robotandroid.OperationRepository.OperationAdapter;
 import com.example.robotandroid.R;
@@ -63,7 +63,7 @@ public class CreateGamme extends AppCompatActivity {
     }
     public void CreateOperation()
     {
-        Intent menuOpe = new Intent(this, CreateOperation.class);
+        Intent menuOpe = new Intent(this, EditOperation.class);
         startActivity(menuOpe);
     }
     private void ApplyOperationAdapter(List<Operation> list){

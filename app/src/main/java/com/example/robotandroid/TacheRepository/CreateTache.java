@@ -1,24 +1,35 @@
-package com.example.robotandroid.OperationRepository;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.robotandroid.TacheRepository;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.robotandroid.MenuDemarrage;
 import com.example.robotandroid.MenuGamme;
 import com.example.robotandroid.MenuTache;
 import com.example.robotandroid.R;
 
-public class CreateOperation extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class CreateTache extends AppCompatActivity {
+
+    private TextView TitreOperation;
+    private TextView DescriptionOperation;
+    private RecyclerView TacheRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_operation);
+        Tache tache = (Tache) getIntent().getSerializableExtra("extraope");
 
         ImageButton buttonMenu = findViewById(R.id.imageButton_menu);
         buttonMenu.setOnClickListener(new View.OnClickListener() {
@@ -41,7 +52,12 @@ public class CreateOperation extends AppCompatActivity {
                 GoToMenuTache();
             }
         });
+        TitreOperation = findViewById(R.id.editText_Titreoperation);
+        DescriptionOperation = findViewById(R.id.editText_descriptionOperation);
+        this.TitreOperation.setText(tache.typeAction.toString());
+        this.DescriptionOperation.setText(tache.valeur);
     }
+
     public void RetourMenu()
     {
         Intent menu = new Intent(this, MenuDemarrage.class);

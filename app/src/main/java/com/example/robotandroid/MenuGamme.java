@@ -15,6 +15,7 @@ import com.example.robotandroid.GammeRepository.CreateGamme;
 import com.example.robotandroid.GammeRepository.Gamme;
 import com.example.robotandroid.GammeRepository.GammeAdapter;
 import com.example.robotandroid.OperationRepository.Operation;
+import com.example.robotandroid.TacheRepository.Tache;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +53,7 @@ public class MenuGamme extends AppCompatActivity {
        Operation op1 = new Operation("Tourner","ça tourne");
         try {
             gamme2.AjouterOperation(op1);
+            op1.AjouterTache(new Tache(Tache.TypeAction.Attendre,5));
         } catch (Exception e) {
             e.printStackTrace();
         }

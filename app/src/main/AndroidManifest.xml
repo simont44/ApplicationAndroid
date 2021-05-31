@@ -24,6 +24,9 @@
         <activity
             android:name=".MenuGamme"
             android:label="MenuGamme" />
+        <activity
+            android:name=".OperationRepository.EditOperation"
+            android:label="EditOperation" />
     </application>
 
 </manifest>

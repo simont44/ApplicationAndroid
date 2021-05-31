@@ -14,7 +14,7 @@ import java.util.List;
 
 public class GammeAdapter extends RecyclerView.Adapter<GammeViewHolder> {
 
-    List<Gamme> ListGamme ;
+    private final List<Gamme> ListGamme;
 
     public GammeAdapter(List<Gamme> listGamme) {
         ListGamme = listGamme;
