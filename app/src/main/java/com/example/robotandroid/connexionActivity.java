@@ -10,20 +10,27 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class MainActivity extends AppCompatActivity {
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.Socket;
+
+public class connexionActivity extends AppCompatActivity {
 
     private EditText loginEditText;
     private EditText passwordEditText;
     private Button connexionButton;
     private Button retourButton;
+    private String ipRobot;
+    private String port;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        loginEditText=(EditText) findViewById(R.id.connexion_login_input);
-        passwordEditText=(EditText) findViewById(R.id.connexion_password_input);
-        connexionButton=(Button) findViewById(R.id.connexion_submit_btn);
-        retourButton=(Button) findViewById(R.id.connexion_retour_btn);
+        setContentView(R.layout.activity_connexion);
+        loginEditText=(EditText) findViewById(R.id.connexionLoginInput);
+        passwordEditText=(EditText) findViewById(R.id.connexionPasswordInput);
+        connexionButton=(Button) findViewById(R.id.connexionSubmitBtn);
+        retourButton=(Button) findViewById(R.id.connexionRetourBtn);
         connexionButton.setEnabled(false);
 
         loginEditText.addTextChangedListener(new TextWatcher() {
@@ -46,6 +53,30 @@ public class MainActivity extends AppCompatActivity {
         connexionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Socket socket = null;
+                try {
+                    socket = new Socket(ipRobot, Integer.parseInt(port));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    OutputStream out = socket.getOutputStream();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                InputStream in = null;
+                try {
+                    in = socket.getInputStream();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                //char[] message = new char[512];
+                //int read = in.read(message);
+
+                //   FaireUntrucAvecLeMessage(new String(message));
+
+             //   out.write("Une réponse au message reçu");
             }
         });
 

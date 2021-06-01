@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".connexionActivity">
 
 
     <EditText
-        android:id="@+id/connexion_login_input"
+        android:id="@+id/connexionLoginInput"
         android:layout_width="178dp"
         android:layout_height="53dp"
         android:layout_marginStart="116dp"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/connexion_password_input"
+        android:id="@+id/connexionPasswordInput"
         android:layout_width="178dp"
         android:layout_height="53dp"
         android:layout_marginStart="116dp"
@@ -30,7 +30,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/connexion_submit_btn"
+        android:id="@+id/connexionSubmitBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="204dp"
@@ -42,7 +42,7 @@
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/connexion_retour_btn"
+        android:id="@+id/connexionRetourBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
