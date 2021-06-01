@@ -4,6 +4,9 @@
     <string name="identifiant">Identifiant</string>
     <string name="retour">retour</string>
     <string name="password">Mot de passe</string>
-    <string name="labelSpinnerListeAppareil">Liste des appareils wifi</string>
+    <string name="labelSpinnerListeAppareil">Liste des appareils wifi :</string>
+    <string name="envoieMessage">Envoyer un message sur le réseau :</string>
+    <string name="hintEnvoieMessage">Ecrivez votre message ici</string>
+    <string name="envoieMessageBtn">Envoyer</string>
 
 </resources>

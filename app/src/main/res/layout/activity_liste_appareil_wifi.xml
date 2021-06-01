@@ -7,24 +7,71 @@
     tools:context=".listeAppareilWifi">
 
     <Spinner
-        android:id="@+id/spinnerRegion"
+        android:id="@+id/spinnerListeAppareilWifi"
         android:layout_width="204dp"
         android:layout_height="52dp"
-        android:spinnerMode="dropdown"
+        android:layout_marginStart="76dp"
+        android:layout_marginLeft="76dp"
+        android:layout_marginEnd="104dp"
+        android:layout_marginRight="104dp"
         android:outlineAmbientShadowColor="@color/purple_500"
+        android:spinnerMode="dropdown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="103dp"
-        tools:layout_editor_absoluteY="150dp"
-        />
+        tools:layout_editor_absoluteY="91dp" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/labelListeAppareilWifi"
         android:layout_width="253dp"
         android:layout_height="25dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginLeft="76dp"
+        android:layout_marginEnd="79dp"
+        android:layout_marginRight="79dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/labelSpinnerListeAppareil"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerListeAppareilWifi"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/labelEnvoieMessageWifi"
+        android:layout_width="253dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginLeft="76dp"
+        android:layout_marginBottom="40dp"
+        android:text="@string/envoieMessage"
+        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
+        android:hint="@string/hintEnvoieMessage"
+        app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="79dp"
-        tools:layout_editor_absoluteY="96dp" />
+        tools:layout_editor_absoluteY="343dp" />
+
+    <Button
+        android:id="@+id/envoieMessageBtn"
+        android:layout_width="113dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="148dp"
+        android:layout_marginLeft="148dp"
+        android:layout_marginBottom="211dp"
+        android:text="@string/envoieMessageBtn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
