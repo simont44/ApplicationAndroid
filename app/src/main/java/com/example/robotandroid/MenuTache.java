@@ -10,7 +10,7 @@ import android.widget.ImageButton;
 
 import com.example.robotandroid.OperationRepository.EditOperation;
 
-public class MenuTache extends AppCompatActivity {
+public class MenuTache extends AbstractActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

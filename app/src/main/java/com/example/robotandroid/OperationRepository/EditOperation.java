@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.robotandroid.AbstractActivity;
 import com.example.robotandroid.MenuDemarrage;
 import com.example.robotandroid.MenuGamme;
 import com.example.robotandroid.MenuTache;
@@ -22,7 +23,7 @@ import com.example.robotandroid.TacheRepository.TacheAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EditOperation extends AppCompatActivity {
+public class EditOperation extends AbstractActivity {
 
     private TextView TitreOperation;
     private TextView DescriptionOperation;

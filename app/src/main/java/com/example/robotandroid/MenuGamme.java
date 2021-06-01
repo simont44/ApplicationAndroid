@@ -20,13 +20,15 @@ import com.example.robotandroid.TacheRepository.Tache;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MenuGamme extends AppCompatActivity {
+public class MenuGamme extends AbstractActivity {
 
     private RecyclerView GammeRecyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_gamme);
+
+
 
         Button buttonMenu = findViewById(R.id.buttonMenu);
         buttonMenu.setOnClickListener(new View.OnClickListener() {
@@ -61,8 +63,8 @@ public class MenuGamme extends AppCompatActivity {
       //   String s = JSONManager.SendDataJson(listeGamme);  //On met ce qu'on reçoit de la base de données
       // String s = "{\"description\":\"Test rotation\",\"id\":\"1\",\"listeOperations\":[{\"ListeTaches\":[{\"typeAction\":\"Tourner\",\"valeur\":12},{\"typeAction\":\"Attendre\",\"valeur\":5}]},{\"ListeTaches\":[{\"typeAction\":\"Tourner\",\"valeur\":24}]}]}\n";
       //  listeGamme= JSONManager.ConvertStringToListGamme(s);
-
         ApplyGammeAdapter(listeGamme);
+        AfficherSauvegarde(findViewById(R.id.root_menugamme));
     }
     public void RetourMenu()
     {
@@ -86,5 +88,6 @@ public class MenuGamme extends AppCompatActivity {
         GammeRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         GammeRecyclerView.setAdapter(adapter);
     }
+
 }
 

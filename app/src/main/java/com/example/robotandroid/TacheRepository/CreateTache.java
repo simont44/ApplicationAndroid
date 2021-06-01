@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.robotandroid.AbstractActivity;
 import com.example.robotandroid.MenuDemarrage;
 import com.example.robotandroid.MenuGamme;
 import com.example.robotandroid.MenuTache;
@@ -19,7 +20,7 @@ import com.example.robotandroid.R;
 
 import java.util.ArrayList;
 
-public class CreateTache extends AppCompatActivity {
+public class CreateTache extends AbstractActivity {
 
     private TextView TitreOperation;
     private TextView DescriptionOperation;

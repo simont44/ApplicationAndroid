@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class MenuDemarrage extends AppCompatActivity {
+public class MenuDemarrage extends AbstractActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

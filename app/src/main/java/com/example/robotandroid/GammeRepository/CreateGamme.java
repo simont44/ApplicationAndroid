@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.robotandroid.AbstractActivity;
 import com.example.robotandroid.MenuDemarrage;
 import com.example.robotandroid.OperationRepository.EditOperation;
 import com.example.robotandroid.OperationRepository.Operation;
@@ -19,7 +20,7 @@ import com.example.robotandroid.R;
 
 import java.util.List;
 
-public class CreateGamme extends AppCompatActivity {
+public class CreateGamme extends AbstractActivity {
 
     private TextView TitreGamme;
     private TextView DescriptionGamme;
