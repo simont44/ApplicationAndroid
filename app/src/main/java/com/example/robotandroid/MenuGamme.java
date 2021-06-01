@@ -78,7 +78,10 @@ public class MenuGamme extends AbstractActivity {
         Gamme gamme = new Gamme("nouveau","nouveau");
         Intent menuCreate = new Intent(this, CreateGamme.class);
         menuCreate.putExtra("extragamme",gamme);
+        MessageJSON msg = new MessageJSON(MessageJSON.TypeMessage.editer,gamme);
+        JSONManager.listMessage.add(msg);
         startActivity(menuCreate);
+
     }
 
 

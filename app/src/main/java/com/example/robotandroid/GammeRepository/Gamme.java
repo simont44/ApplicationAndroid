@@ -27,8 +27,15 @@ public class Gamme implements Serializable {
                 throw new Exception("Cette opération est déjà présente dans la gamme.");
         }
 
+    public String getId() {
+        return id;
+    }
 
-        public void SupprimerOperation(Operation o) throws Exception {
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void SupprimerOperation(Operation o) throws Exception {
             if (listeOperations.contains(o))
                 listeOperations.remove(o);
             else

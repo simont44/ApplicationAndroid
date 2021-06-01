@@ -13,9 +13,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.robotandroid.AbstractActivity;
+import com.example.robotandroid.GammeRepository.Gamme;
 import com.example.robotandroid.MenuDemarrage;
 import com.example.robotandroid.MenuGamme;
 import com.example.robotandroid.MenuTache;
+import com.example.robotandroid.MessageJSON;
 import com.example.robotandroid.R;
 
 import java.util.ArrayList;
@@ -25,6 +27,7 @@ public class CreateTache extends AbstractActivity {
     private TextView TitreOperation;
     private TextView DescriptionOperation;
     private RecyclerView TacheRecyclerView;
+    private Gamme gamme;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,11 +71,15 @@ public class CreateTache extends AbstractActivity {
     public void GoToMenuTache()
     {
         Intent menutache = new Intent(this, MenuTache.class);
+        menutache.putExtra("extragamme",gamme);
+        MessageJSON msg = new MessageJSON(MessageJSON.TypeMessage.editer,gamme);
         startActivity(menutache);
         finish();
     }
     public void GoToMenuGamme(){
         Intent menuGamme = new Intent(this, MenuGamme.class);
+        menuGamme.putExtra("extragamme",gamme);
+        MessageJSON msg = new MessageJSON(MessageJSON.TypeMessage.editer,gamme);
         startActivity(menuGamme);
         finish();
     }

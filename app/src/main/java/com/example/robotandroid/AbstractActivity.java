@@ -37,23 +37,26 @@ public class AbstractActivity extends AppCompatActivity {
 
         // show the popup window
         // which view you pass in doesn't matter, it is only used for the window tolken
+
         parent.post(new Runnable() {
             @Override
             public void run() {
-                popupWindow.showAtLocation(parent, Gravity.TOP, 0, 0);
-                TextView text_popup = popupView.findViewById(R.id.popup_sav_interaction);
+                if (JSONManager.listMessage.size() != 0) {
+                    popupWindow.showAtLocation(parent, Gravity.TOP, 0, 0);
+                    TextView text_popup = popupView.findViewById(R.id.popup_sav_interaction);
 
-                text_popup.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        try {
-                            JSONManager.SendAllList();
-                        } catch (IOException e) {
-                            e.printStackTrace();
+                    text_popup.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            try {
+                                JSONManager.SendAllList();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                         }
-                    }
-                });
+                    });
 
+                }
             }
         });
 

@@ -13,9 +13,11 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.robotandroid.AbstractActivity;
+import com.example.robotandroid.GammeRepository.Gamme;
 import com.example.robotandroid.MenuDemarrage;
 import com.example.robotandroid.MenuGamme;
 import com.example.robotandroid.MenuTache;
+import com.example.robotandroid.MessageJSON;
 import com.example.robotandroid.R;
 import com.example.robotandroid.TacheRepository.Tache;
 import com.example.robotandroid.TacheRepository.TacheAdapter;
@@ -28,12 +30,14 @@ public class EditOperation extends AbstractActivity {
     private TextView TitreOperation;
     private TextView DescriptionOperation;
     private RecyclerView tacheRecyclerView;
+    private Gamme gamme;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_operation);
         tacheRecyclerView = findViewById(R.id.recyclerView_listetâche);
+        Gamme gamme = (Gamme) getIntent().getSerializableExtra("extragamme");
         Operation uneoperation = (Operation) getIntent().getSerializableExtra("extraope");
 
         ImageButton buttonMenu = findViewById(R.id.imageButton_menu);
@@ -80,6 +84,8 @@ public class EditOperation extends AbstractActivity {
     public void GoToMenuTache()
     {
         Intent menutache = new Intent(this, MenuTache.class);
+        menutache.putExtra("extragamme",gamme);
+        MessageJSON msg = new MessageJSON(MessageJSON.TypeMessage.editer,gamme);
         startActivity(menutache);
         finish();
     }

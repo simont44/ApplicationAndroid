@@ -3,9 +3,15 @@ package com.example.robotandroid;
 import com.example.robotandroid.GammeRepository.Gamme;
 
 public class MessageJSON {
+    public MessageJSON(TypeMessage type, Gamme gamme) {
+        this.type = type;
+        this.idGamme = gamme.getId();
+        this.gamme = gamme;
+    }
+
     public enum TypeMessage{executer, editer, supprimer};
     private TypeMessage type;
-    private int idGamme;
+    private String idGamme;
     private Gamme gamme;
 
     public TypeMessage getType() {
@@ -16,11 +22,11 @@ public class MessageJSON {
         this.type = type;
     }
 
-    public int getIdGamme() {
+    public String getIdGamme() {
         return idGamme;
     }
 
-    public void setIdGamme(int idGamme) {
+    public void setIdGamme(String idGamme) {
         this.idGamme = idGamme;
     }
 

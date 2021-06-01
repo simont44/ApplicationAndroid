@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.robotandroid.AbstractActivity;
 import com.example.robotandroid.MenuDemarrage;
+import com.example.robotandroid.MessageJSON;
 import com.example.robotandroid.OperationRepository.EditOperation;
 import com.example.robotandroid.OperationRepository.Operation;
 import com.example.robotandroid.OperationRepository.OperationAdapter;
@@ -25,6 +26,7 @@ public class CreateGamme extends AbstractActivity {
     private TextView TitreGamme;
     private TextView DescriptionGamme;
     private RecyclerView OperationRecyclerView;
+    private Gamme gamme;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +34,7 @@ public class CreateGamme extends AbstractActivity {
         setContentView(R.layout.activity_create_gamme);
 
         Intent itentUpdate = getIntent();
-        Gamme gamme = (Gamme) itentUpdate.getSerializableExtra("extragamme");
+        gamme = (Gamme) itentUpdate.getSerializableExtra("extragamme");
         OperationRecyclerView = findViewById(R.id.RecyclerView_ListOpe);
 
         Button buttonMenu = findViewById(R.id.button_menu1);
@@ -44,6 +46,14 @@ public class CreateGamme extends AbstractActivity {
         });
         Button buttonEnd = findViewById(R.id.button_End);
         buttonEnd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO : SauvegarderGamme();
+            }
+        });
+
+        Button AjoutOPeration = findViewById(R.id.button_creategamme_ajoutoperation);
+        AjoutOPeration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 CreateOperation();
@@ -65,6 +75,9 @@ public class CreateGamme extends AbstractActivity {
     public void CreateOperation()
     {
         Intent menuOpe = new Intent(this, EditOperation.class);
+        menuOpe.putExtra("extragamme",gamme);
+        MessageJSON msg = new MessageJSON(MessageJSON.TypeMessage.editer,gamme);
+
         startActivity(menuOpe);
     }
     private void ApplyOperationAdapter(List<Operation> list){
