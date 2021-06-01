@@ -31,14 +31,15 @@ public class EditOperation extends AbstractActivity {
     private TextView DescriptionOperation;
     private RecyclerView tacheRecyclerView;
     private Gamme gamme;
+    private Operation uneoperation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_operation);
         tacheRecyclerView = findViewById(R.id.recyclerView_listetâche);
-        Gamme gamme = (Gamme) getIntent().getSerializableExtra("extragamme");
-        Operation uneoperation = (Operation) getIntent().getSerializableExtra("extraope");
+        gamme = (Gamme) getIntent().getSerializableExtra("extragamme");
+        uneoperation = (Operation) getIntent().getSerializableExtra("extraope");
 
         ImageButton buttonMenu = findViewById(R.id.imageButton_menu);
         buttonMenu.setOnClickListener(new View.OnClickListener() {
@@ -83,13 +84,18 @@ public class EditOperation extends AbstractActivity {
     }
     public void GoToMenuTache()
     {
+        Tache tache = new Tache(Tache.TypeAction.Attendre, 0);
         Intent menutache = new Intent(this, MenuTache.class);
+        menutache.putExtra("extratache",tache);
+        menutache.putExtra("extraope", uneoperation);
         menutache.putExtra("extragamme",gamme);
         MessageJSON msg = new MessageJSON(MessageJSON.TypeMessage.editer,gamme);
+        uneoperation.AjouterTache(tache);
         startActivity(menutache);
         finish();
     }
     public void GoToMenuGamme(){
+
         Intent menuGamme = new Intent(this, MenuGamme.class);
         startActivity(menuGamme);
         finish();

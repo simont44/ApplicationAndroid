@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Path;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -74,9 +75,15 @@ public class CreateGamme extends AbstractActivity {
     }
     public void CreateOperation()
     {
+        Operation operation = new Operation("nouveau","nouveau");
         Intent menuOpe = new Intent(this, EditOperation.class);
+        menuOpe.putExtra("extraope",operation);
         menuOpe.putExtra("extragamme",gamme);
         MessageJSON msg = new MessageJSON(MessageJSON.TypeMessage.editer,gamme);
+        try{
+            gamme.AjouterOperation(operation);
+        }catch(Exception e) {
+        }
 
         startActivity(menuOpe);
     }
