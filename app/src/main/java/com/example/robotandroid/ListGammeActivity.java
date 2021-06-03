@@ -1,17 +1,14 @@
 package com.example.robotandroid;
 
-import
-        androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.graphics.Path;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.robotandroid.GammeRepository.CreateGamme;
+import com.example.robotandroid.GammeRepository.EditGammeActivity;
 import com.example.robotandroid.GammeRepository.Gamme;
 import com.example.robotandroid.GammeRepository.GammeAdapter;
 import com.example.robotandroid.OperationRepository.Operation;
@@ -20,15 +17,19 @@ import com.example.robotandroid.TacheRepository.Tache;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MenuGamme extends AbstractActivity {
+public class ListGammeActivity extends AbstractActivity {
 
     private RecyclerView GammeRecyclerView;
+    private List<Gamme> listeGamme = new ArrayList<Gamme>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_gamme);
-
-
+        Gamme gamme = (Gamme) getIntent().getSerializableExtra("extragamme");
+        if(gamme!= null)
+        {
+            listeGamme.add(gamme);
+        }
 
         Button buttonMenu = findViewById(R.id.buttonMenu);
         buttonMenu.setOnClickListener(new View.OnClickListener() {
@@ -50,7 +51,6 @@ public class MenuGamme extends AbstractActivity {
         GammeRecyclerView = findViewById(R.id.ViewListGamme);
 
         //Jeu de données temporaire
-       List<Gamme> listeGamme = new ArrayList<>();
        Gamme gamme2 = new Gamme("2", "C est encore un test");
        Operation op1 = new Operation("Tourner","ça tourne");
         try {
@@ -76,7 +76,7 @@ public class MenuGamme extends AbstractActivity {
     public void CreateGamme()
     {
         Gamme gamme = new Gamme("nouveau","nouveau");
-        Intent menuCreate = new Intent(this, CreateGamme.class);
+        Intent menuCreate = new Intent(this, EditGammeActivity.class);
         menuCreate.putExtra("extragamme",gamme);
         MessageJSON msg = new MessageJSON(MessageJSON.TypeMessage.editer,gamme);
         JSONManager.listMessage.add(msg);

@@ -5,7 +5,7 @@
     android:id="@+id/root_menugamme"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MenuGamme">
+    tools:context=".ListGammeActivity">
 
   <Button
       android:id="@+id/buttonMenu"

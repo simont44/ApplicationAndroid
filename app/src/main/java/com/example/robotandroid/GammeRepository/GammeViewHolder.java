@@ -1,18 +1,13 @@
 package com.example.robotandroid.GammeRepository;
 
-import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.robotandroid.GammeRepository.Gamme;
 import com.example.robotandroid.R;
-
-import org.w3c.dom.Text;
 
 public class GammeViewHolder extends RecyclerView.ViewHolder {
 
@@ -50,7 +45,7 @@ public class GammeViewHolder extends RecyclerView.ViewHolder {
     //On envoie sur l'activité de création en donnant les fichiers en paramètres
     public  void GoToEditerGamme()
     {
-        Intent menuEdit = new Intent(TextViewGamme.getContext(), CreateGamme.class);
+        Intent menuEdit = new Intent(TextViewGamme.getContext(), EditGammeActivity.class);
         menuEdit.putExtra("extragamme",this.unegamme);
         itemView.getContext().startActivity(menuEdit);
     }

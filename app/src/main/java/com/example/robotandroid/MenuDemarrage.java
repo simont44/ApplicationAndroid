@@ -1,7 +1,5 @@
 package com.example.robotandroid;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -24,7 +22,7 @@ public class MenuDemarrage extends AbstractActivity {
     }
     public void OpenMenuGamme()
     {
-       Intent menu = new Intent(this, MenuGamme.class);
+       Intent menu = new Intent(this, ListGammeActivity.class);
        startActivity(menu);
     }
 }

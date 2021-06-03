@@ -14,7 +14,7 @@
         app:destination="@id/menuGamme"></action>
     <activity
         android:id="@+id/menuGamme"
-        android:name="com.example.robotandroid.MenuGamme"
+        android:name="com.example.robotandroid.ListGammeActivity"
         android:label="MenuGamme" />
     <action
         android:id="@+id/action_gamme_to_demarrage"

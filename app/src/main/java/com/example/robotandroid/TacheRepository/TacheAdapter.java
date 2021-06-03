@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.robotandroid.GammeRepository.Gamme;
+import com.example.robotandroid.OperationRepository.Operation;
 import com.example.robotandroid.R;
 
 import java.util.List;
@@ -14,9 +16,14 @@ import java.util.List;
 public class TacheAdapter extends RecyclerView.Adapter<TacheViewHolder>  {
 
  List<Tache> listTaches;
+ private Gamme gamme;
+ private Operation operation;
 
-    public TacheAdapter(List<Tache> listTaches) {
-        this.listTaches = listTaches;
+
+    public TacheAdapter(Gamme gamme, Operation operation) {
+        this.listTaches = operation.getListeTaches();
+        this.operation = operation;
+        this.gamme = gamme;
     }
 
     //Liste entière des items Operation
@@ -30,7 +37,7 @@ public class TacheAdapter extends RecyclerView.Adapter<TacheViewHolder>  {
 
     public void onBindViewHolder(TacheViewHolder holder, int position) {
         // on charge l'item graphic, on dit ce qu'il faut afficher dans l'item.
-        holder.UpdateVisual(listTaches.get(position));
+        holder.UpdateVisual(listTaches.get(position),operation, gamme);
     }
 
     public int getItemCount() {

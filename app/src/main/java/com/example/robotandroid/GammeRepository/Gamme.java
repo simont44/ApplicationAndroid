@@ -42,5 +42,19 @@ public class Gamme implements Serializable {
                 throw new Exception("Cette opération n'est pas présente dans la gamme.");
         }
 
+    public String getDescription() {
+        return description;
+    }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public ArrayList<Operation> getListeOperations() {
+        return listeOperations;
+    }
+
+    public void setListeOperations(ArrayList<Operation> listeOperations) {
+        this.listeOperations = listeOperations;
+    }
 }

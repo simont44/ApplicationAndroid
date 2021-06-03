@@ -28,5 +28,29 @@ public class Operation implements Serializable {
     {
         ListeTaches.remove(t);
     }
+
+    public ArrayList<Tache> getListeTaches() {
+        return ListeTaches;
+    }
+
+    public void setListeTaches(ArrayList<Tache> listeTaches) {
+        ListeTaches = listeTaches;
+    }
+
+    public String getTitre() {
+        return titre;
+    }
+
+    public void setTitre(String titre) {
+        this.titre = titre;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }
 

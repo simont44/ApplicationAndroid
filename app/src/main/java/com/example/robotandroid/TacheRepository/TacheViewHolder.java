@@ -1,5 +1,6 @@
 package com.example.robotandroid.TacheRepository;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
@@ -7,6 +8,10 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.robotandroid.GammeRepository.EditGammeActivity;
+import com.example.robotandroid.GammeRepository.Gamme;
+import com.example.robotandroid.OperationRepository.EditOperationActivity;
+import com.example.robotandroid.OperationRepository.Operation;
 import com.example.robotandroid.R;
 
 public class TacheViewHolder extends RecyclerView.ViewHolder {
@@ -15,6 +20,8 @@ public class TacheViewHolder extends RecyclerView.ViewHolder {
     private TextView textViewTypeAction;
     private TextView textViewValue;
     private Button buttonSuppr;
+    private Gamme gamme;
+    private Operation operation;
 
     public TacheViewHolder(View itemView) {
         super(itemView);
@@ -31,16 +38,29 @@ public class TacheViewHolder extends RecyclerView.ViewHolder {
         this.tache = tache;
     }
 
-    public void UpdateVisual(Tache tache)
+    public void UpdateVisual(Tache tache, Operation operation, Gamme gamme)
     {
+
+        this.operation = operation;
+        this.gamme = gamme;
+        this.tache = tache;
         buttonSuppr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                SupprimerTache();
             }
         });
-        this.tache = tache;
         textViewValue.setText(tache.valeur+"");
         textViewTypeAction.setText(tache.typeAction.toString());
+    }
+    public void SupprimerTache(){
+
+        operation.SupprimerTache(this.tache);
+
+        Intent intent = new Intent(textViewTypeAction.getContext(), EditOperationActivity.class);
+        intent.putExtra("extragamme",gamme);
+        intent.putExtra("numOpe", gamme.getListeOperations().indexOf(operation));
+        itemView.getContext().startActivity(intent);
+        ((Activity) itemView.getContext()).finish();
     }
 }

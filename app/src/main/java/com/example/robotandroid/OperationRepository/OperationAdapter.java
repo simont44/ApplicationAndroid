@@ -15,10 +15,12 @@ import java.util.List;
 
 public class OperationAdapter  extends RecyclerView.Adapter<OperationViewHolder>  {
 
- List<Operation> ListOperation;
+    private Gamme gamme;
+    List<Operation> ListOperation;
 
-    public OperationAdapter(List<Operation> listOperations) {
-        ListOperation = listOperations;
+    public OperationAdapter(Gamme gamme) {
+        ListOperation = gamme.getListeOperations();
+        this.gamme= gamme;
     }
 
     //Liste entière des items Operation
@@ -32,7 +34,7 @@ public class OperationAdapter  extends RecyclerView.Adapter<OperationViewHolder>
 
     public void onBindViewHolder(OperationViewHolder holder, int position) {
         // on charge l'item graphic, on dit ce qu'il faut afficher dans l'item.
-        holder.UpdateVisual(ListOperation.get(position));
+        holder.UpdateVisual(ListOperation.get(position),this.gamme);
     }
 
     public int getItemCount() {
