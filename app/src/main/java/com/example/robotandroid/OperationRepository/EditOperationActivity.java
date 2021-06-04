@@ -3,6 +3,8 @@ package com.example.robotandroid.OperationRepository;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,12 +19,9 @@ import com.example.robotandroid.GammeRepository.Gamme;
 import com.example.robotandroid.MenuDemarrage;
 import com.example.robotandroid.ListGammeActivity;
 import com.example.robotandroid.TacheRepository.EditTacheActivity;
-import com.example.robotandroid.MessageJSON;
 import com.example.robotandroid.R;
 import com.example.robotandroid.TacheRepository.Tache;
 import com.example.robotandroid.TacheRepository.TacheAdapter;
-
-import java.util.List;
 
 public class EditOperationActivity extends AbstractActivity {
 
@@ -41,32 +40,44 @@ public class EditOperationActivity extends AbstractActivity {
         int numOpe = getIntent().getIntExtra("numOpe",-2);
         uneoperation = gamme.getListeOperations().get(numOpe);
 
-        ImageButton buttonMenu = findViewById(R.id.imageButton_menu);
-        buttonMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                RetourMenu();
-            }
-        });
-        ImageButton buttonRetourGamme = findViewById(R.id.imageButton_retourGamme);
-        buttonRetourGamme.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                GoToMenuGamme();
-            }
-        });
         Button buttonCreateTache = findViewById(R.id.button_createTache);
         buttonCreateTache.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GoToMenuTache();
+                CreateTache();
             }
         });
         Button buttonValider = findViewById(R.id.button_valider);
         buttonValider.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SauvegarderOperation();
+                Intent menuGamme = new Intent(getApplicationContext(), EditGammeActivity.class);
+
+                if(uneoperation.ListeTaches.size()==0) {
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(EditOperationActivity.this);
+                    alertDialogBuilder.setMessage("L'Opération n'a pas de tâche. Vous devez en créer au moins une avant de la sauvegarder");
+                    alertDialogBuilder.setPositiveButton("Créer Tâche", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            CreateTache();
+                        }
+                    });
+                    alertDialogBuilder.setNegativeButton("Supprimer l'opération", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            gamme.getListeOperations().remove(uneoperation);
+                            menuGamme.putExtra("extragamme",gamme);
+                            startActivity(menuGamme);
+                            finish();
+                        }
+                    });
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+                    alertDialog.show();
+                }else {
+
+
+                    SauvegarderOperation();
+                }
             }
         });
         TitreOperation = findViewById(R.id.editText_Titreoperation);
@@ -91,13 +102,7 @@ public class EditOperationActivity extends AbstractActivity {
         finish();
     }
 
-    public void RetourMenu()
-    {
-        Intent menu = new Intent(this, MenuDemarrage.class);
-        startActivity(menu);
-        finish();
-    }
-    public void GoToMenuTache()
+    public void CreateTache()
     {
         Tache tache = new Tache(Tache.TypeAction.Attendre, 0);
         uneoperation.AjouterTache(tache);
@@ -111,9 +116,14 @@ public class EditOperationActivity extends AbstractActivity {
         finish();
     }
     public void GoToMenuGamme(){
-
         Intent menuGamme = new Intent(this, ListGammeActivity.class);
         startActivity(menuGamme);
         finish();
+    }
+
+    @Override
+    protected void onStop() {
+        //this.SauvegarderOperation();
+        super.onStop();
     }
 }

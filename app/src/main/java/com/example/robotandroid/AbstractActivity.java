@@ -26,6 +26,12 @@ public class AbstractActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
     }
+
+    @Override
+    protected void onStop() {
+       super.onStop();
+    }
+
     //Quand on a des données non sauvegardées, on lance l'application
     protected void AfficherSauvegarde(View parent){
 
@@ -53,39 +59,40 @@ public class AbstractActivity extends AppCompatActivity {
                     text_popup.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-
-                            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(AbstractActivity.this);
-                            alertDialogBuilder.setMessage("Les données n'ont pas encore été envoyé à la base de donnée. Souhaitez vous les envoyer ? ");
-                            alertDialogBuilder.setPositiveButton("Sauvegarder", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    try {
-                                        JSONManager.SendAllList();
-                                        Log.e("SaveBDD","Les données sont sauvegardées et envoyées à la BDD");
-                                    } catch (IOException e) {
-                                        e.printStackTrace();
-                                    }
-                                    Intent MenuDemarrage = new Intent(getApplicationContext(), MenuDemarrage.class);
-                                    startActivity(MenuDemarrage);
-                                    finish();
-                                }
-                            });
-                            alertDialogBuilder.setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-
-                                }
-                            });
-                            AlertDialog alertDialog = alertDialogBuilder.create();
-                            alertDialog.show();
+                            AfficherMessagePop();
                         }
                     });
 
                 }
             }
         });
+    }
 
+    public void AfficherMessagePop(){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(AbstractActivity.this);
+        alertDialogBuilder.setMessage("Les données n'ont pas encore été envoyé à la base de donnée. Souhaitez vous les envoyer ? ");
+        alertDialogBuilder.setPositiveButton("Sauvegarder", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                try {
+                    JSONManager.SendAllList();
+                    Log.e("SaveBDD","Les données sont sauvegardées et envoyées à la BDD");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Intent MenuDemarrage = new Intent(getApplicationContext(), MenuDemarrage.class);
+                startActivity(MenuDemarrage);
+                finish();
+            }
+        });
+        alertDialogBuilder.setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
 
+            }
+        });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 
 

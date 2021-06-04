@@ -81,4 +81,10 @@ public class EditTacheActivity extends AbstractActivity {
         startActivity(menuOpe);
         finish();
     }
+
+    @Override
+    protected void onStop() {
+        //this.ValiderEdition();
+        super.onStop();
+    }
 }

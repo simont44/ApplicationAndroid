@@ -26,12 +26,6 @@ public class ListGammeActivity extends AbstractActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_gamme);
-        Gamme gamme = (Gamme) getIntent().getSerializableExtra("extragamme");
-        if(gamme!= null)
-        {
-            this.ListeGamme.add(gamme);
-        }
-
 
         Button buttonMenu = findViewById(R.id.buttonMenu);
         buttonMenu.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +51,7 @@ public class ListGammeActivity extends AbstractActivity {
     public void RetourMenu()
     {
         Intent menu = new Intent(this, MenuDemarrage.class);
+        AfficherMessagePop();
         startActivity(menu);
         finish();
     }
@@ -64,9 +59,11 @@ public class ListGammeActivity extends AbstractActivity {
     public void CreateGamme()
     {
         Gamme gamme = new Gamme("nouveau","nouveau");
+        this.ListeGamme.add(gamme);
         Intent menuCreate = new Intent(this, EditGammeActivity.class);
         menuCreate.putExtra("extragamme",gamme);
         startActivity(menuCreate);
+        finish();
 
     }
 

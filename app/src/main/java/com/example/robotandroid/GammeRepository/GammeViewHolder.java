@@ -1,5 +1,6 @@
 package com.example.robotandroid.GammeRepository;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
@@ -76,6 +77,9 @@ public class GammeViewHolder extends RecyclerView.ViewHolder {
     {
         ListGammeActivity.ListeGamme.remove(this.unegamme);
         MessageJSON msg = new MessageJSON(MessageJSON.TypeMessage.supprimer,unegamme);
+        Intent menuList = new Intent(TextViewGamme.getContext(), ListGammeActivity.class);
+        itemView.getContext().startActivity(menuList);
+        ((Activity)itemView.getContext()).finish();
     }
     public void ExecuterGamme()
     {
