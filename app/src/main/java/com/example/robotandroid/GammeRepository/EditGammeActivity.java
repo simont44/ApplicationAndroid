@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.robotandroid.AbstractActivity;
+import com.example.robotandroid.JSONManager;
 import com.example.robotandroid.ListGammeActivity;
 import com.example.robotandroid.MenuDemarrage;
 import com.example.robotandroid.MessageJSON;
@@ -53,6 +54,8 @@ public class EditGammeActivity extends AbstractActivity {
                 gamme.id = ((TextView) findViewById(R.id.editText_titregamme)).getText().toString();
                 gamme.description = ((TextView) findViewById(R.id.muliTextView_descriptionGamme)).getText().toString();
                 menuGamme.putExtra("extragamme",gamme);
+                MessageJSON msg = new MessageJSON(MessageJSON.TypeMessage.editer, gamme);
+                JSONManager.listMessage.add(msg);
                 startActivity(menuGamme);
                 finish();
             }
@@ -83,7 +86,6 @@ public class EditGammeActivity extends AbstractActivity {
         Operation operation = new Operation("nouveau","nouveau");
         Intent menuOpe = new Intent(this, EditOperationActivity.class);
 
-        MessageJSON msg = new MessageJSON(MessageJSON.TypeMessage.editer,gamme);
         try{
             gamme.AjouterOperation(operation);
         }catch(Exception e) {

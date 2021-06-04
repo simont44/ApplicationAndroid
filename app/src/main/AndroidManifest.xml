@@ -27,6 +27,9 @@
         <activity
             android:name=".OperationRepository.EditOperationActivity"
             android:label="EditOperation" />
+        <activity
+            android:name=".AbstractActivity"
+            android:label="AbstractActivity" />
     </application>
 
 </manifest>

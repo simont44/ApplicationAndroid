@@ -8,16 +8,16 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.robotandroid.ListGammeActivity;
 import com.example.robotandroid.R;
 
 import java.util.List;
 
 public class GammeAdapter extends RecyclerView.Adapter<GammeViewHolder> {
 
-    private final List<Gamme> ListGamme;
 
-    public GammeAdapter(List<Gamme> listGamme) {
-        ListGamme = listGamme;
+    public GammeAdapter() {
+
     }
 
     //Liste entière des items Gammes
@@ -32,12 +32,12 @@ public class GammeAdapter extends RecyclerView.Adapter<GammeViewHolder> {
     @Override
     public void onBindViewHolder(GammeViewHolder holder, int position) {
     // on charge l'item graphic, on dit ce qu'il faut afficher dans l'item.
-        holder.UpdateVisual(ListGamme.get(position));
+        holder.UpdateVisual(ListGammeActivity.ListeGamme.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return ListGamme.size();
+        return ListGammeActivity.ListeGamme.size();
     }
 
 }

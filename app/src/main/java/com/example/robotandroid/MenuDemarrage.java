@@ -5,7 +5,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.robotandroid.GammeRepository.Gamme;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 public class MenuDemarrage extends AbstractActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +29,12 @@ public class MenuDemarrage extends AbstractActivity {
     }
     public void OpenMenuGamme()
     {
+        try {
+          ListGammeActivity.ListeGamme = JSONManager.GetDataFromBDD();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
        Intent menu = new Intent(this, ListGammeActivity.class);
        startActivity(menu);
     }

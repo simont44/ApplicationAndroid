@@ -19,8 +19,9 @@ import java.util.List;
 
 public class ListGammeActivity extends AbstractActivity {
 
+    public static ArrayList<Gamme> ListeGamme = new ArrayList<Gamme>();
+
     private RecyclerView GammeRecyclerView;
-    private List<Gamme> listeGamme = new ArrayList<Gamme>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,8 +29,9 @@ public class ListGammeActivity extends AbstractActivity {
         Gamme gamme = (Gamme) getIntent().getSerializableExtra("extragamme");
         if(gamme!= null)
         {
-            listeGamme.add(gamme);
+            this.ListeGamme.add(gamme);
         }
+
 
         Button buttonMenu = findViewById(R.id.buttonMenu);
         buttonMenu.setOnClickListener(new View.OnClickListener() {
@@ -49,21 +51,7 @@ public class ListGammeActivity extends AbstractActivity {
 
 
         GammeRecyclerView = findViewById(R.id.ViewListGamme);
-
-        //Jeu de données temporaire
-       Gamme gamme2 = new Gamme("2", "C est encore un test");
-       Operation op1 = new Operation("Tourner","ça tourne");
-        try {
-            gamme2.AjouterOperation(op1);
-            op1.AjouterTache(new Tache(Tache.TypeAction.Attendre,5));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        listeGamme.add(gamme2);
-      //   String s = JSONManager.SendDataJson(listeGamme);  //On met ce qu'on reçoit de la base de données
-      // String s = "{\"description\":\"Test rotation\",\"id\":\"1\",\"listeOperations\":[{\"ListeTaches\":[{\"typeAction\":\"Tourner\",\"valeur\":12},{\"typeAction\":\"Attendre\",\"valeur\":5}]},{\"ListeTaches\":[{\"typeAction\":\"Tourner\",\"valeur\":24}]}]}\n";
-      //  listeGamme= JSONManager.ConvertStringToListGamme(s);
-        ApplyGammeAdapter(listeGamme);
+        ApplyGammeAdapter();
         AfficherSauvegarde(findViewById(R.id.root_menugamme));
     }
     public void RetourMenu()
@@ -78,16 +66,14 @@ public class ListGammeActivity extends AbstractActivity {
         Gamme gamme = new Gamme("nouveau","nouveau");
         Intent menuCreate = new Intent(this, EditGammeActivity.class);
         menuCreate.putExtra("extragamme",gamme);
-        MessageJSON msg = new MessageJSON(MessageJSON.TypeMessage.editer,gamme);
-        JSONManager.listMessage.add(msg);
         startActivity(menuCreate);
 
     }
 
 
-    private void ApplyGammeAdapter(List<Gamme> list){
+    private void ApplyGammeAdapter(){
         //Appel à la sauvegarde des gammes
-        GammeAdapter adapter = new GammeAdapter(list);
+        GammeAdapter adapter = new GammeAdapter();
         GammeRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         GammeRecyclerView.setAdapter(adapter);
     }

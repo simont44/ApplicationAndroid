@@ -107,7 +107,6 @@ public class EditOperationActivity extends AbstractActivity {
         menutache.putExtra("extragamme",gamme);
         menutache.putExtra("numOpe",gamme.getListeOperations().indexOf(uneoperation));
         menutache.putExtra("numTache",uneoperation.ListeTaches.indexOf(tache));
-        MessageJSON msg = new MessageJSON(MessageJSON.TypeMessage.editer,gamme);
         startActivity(menutache);
         finish();
     }

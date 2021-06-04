@@ -4,6 +4,8 @@ import android.icu.util.Output;
 import android.util.Log;
 
 import com.example.robotandroid.GammeRepository.Gamme;
+import com.example.robotandroid.OperationRepository.Operation;
+import com.example.robotandroid.TacheRepository.Tache;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -27,7 +29,6 @@ public class JSONManager {
 
         socket.close();
         return json;
-        //Update pour envoyer au robot
     }
     public static void SendAllList() throws IOException {
         for (MessageJSON msg: listMessage) {
@@ -36,22 +37,26 @@ public class JSONManager {
         Log.e("Sav", "Sauvegarde envoyée");
     }
 
-    public static String GetDataJson() throws IOException {
-        Socket socket = new Socket("ipRobot",00);
-        InputStream in = socket.getInputStream();
+    public static ArrayList<Gamme> GetDataFromBDD() throws IOException {
+        ArrayList<Gamme> listeGamme = new ArrayList<Gamme>();
+//        Socket socket = new Socket("ipRobot",00);
+//        InputStream in = socket.getInputStream();
+//
+//        byte[] message = new byte[2048];
+//        in.read(message);
 
-        byte[] message = new byte[2048];
-        in.read(message);
+        //Jeu de données temporaire
+        Gamme gamme2 = new Gamme("2", "Test");
+        Operation op1 = new Operation("Tourner","ça tourne");
+        try {
+            gamme2.AjouterOperation(op1);
+            op1.AjouterTache(new Tache(Tache.TypeAction.Attendre,5));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        listeGamme.add(gamme2);
 
-        return null;
-    }
-
-    // Récuperer liste Gamme
-    public static List<Gamme> ConvertStringToListGamme(String json)
-    {
-        Gson gson = new Gson();
-        List<Gamme> datagamme = gson.fromJson(json, new TypeToken<List<Gamme>>(){}.getType());
-        return datagamme;
+        return listeGamme;
     }
 
    public static List<MessageJSON> listMessage = new ArrayList<MessageJSON>();

@@ -1,7 +1,12 @@
 package com.example.robotandroid;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.AppComponentFactory;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -48,11 +53,31 @@ public class AbstractActivity extends AppCompatActivity {
                     text_popup.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            try {
-                                JSONManager.SendAllList();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
+
+                            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(AbstractActivity.this);
+                            alertDialogBuilder.setMessage("Les données n'ont pas encore été envoyé à la base de donnée. Souhaitez vous les envoyer ? ");
+                            alertDialogBuilder.setPositiveButton("Sauvegarder", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    try {
+                                        JSONManager.SendAllList();
+                                        Log.e("SaveBDD","Les données sont sauvegardées et envoyées à la BDD");
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
+                                    Intent MenuDemarrage = new Intent(getApplicationContext(), MenuDemarrage.class);
+                                    startActivity(MenuDemarrage);
+                                    finish();
+                                }
+                            });
+                            alertDialogBuilder.setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            AlertDialog alertDialog = alertDialogBuilder.create();
+                            alertDialog.show();
                         }
                     });
 
