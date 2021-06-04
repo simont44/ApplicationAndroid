@@ -14,7 +14,7 @@ public class Controleur {
         this.robot = r;
         this.listeGammes = new HashMap<String, Gamme>();
         //on renseigne le nom et le type de l'utilisateur
-        this.utilisateurConnecté = new Utilisateur(nom , false);
+        this.utilisateurConnecté = new Utilisateur(nom , false, "","");
         listeGammes = recupererGammes();
     }
 

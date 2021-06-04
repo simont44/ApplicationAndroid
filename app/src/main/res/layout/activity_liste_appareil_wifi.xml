@@ -17,10 +17,10 @@
         android:outlineAmbientShadowColor="@color/purple_500"
         android:spinnerMode="dropdown"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="91dp" />
+        tools:layout_editor_absoluteY="327dp" />
 
     <TextView
         android:id="@+id/labelListeAppareilWifi"
@@ -30,48 +30,50 @@
         android:layout_marginLeft="76dp"
         android:layout_marginEnd="79dp"
         android:layout_marginRight="79dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="420dp"
         android:text="@string/labelSpinnerListeAppareil"
-        app:layout_constraintBottom_toTopOf="@+id/spinnerListeAppareilWifi"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/labelEnvoieMessageWifi"
-        android:layout_width="253dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="76dp"
-        android:layout_marginLeft="76dp"
-        android:layout_marginBottom="40dp"
-        android:text="@string/envoieMessage"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
+        android:id="@+id/etatWifiLabel"
+        android:layout_width="147dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginTop="96dp"
+        android:text="@string/etatWifi"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginLeft="100dp"
-        android:hint="@string/hintEnvoieMessage"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="343dp" />
-
-    <Button
-        android:id="@+id/envoieMessageBtn"
-        android:layout_width="113dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="148dp"
-        android:layout_marginLeft="148dp"
-        android:layout_marginBottom="211dp"
-        android:text="@string/envoieMessageBtn"
+    <TextView
+        android:id="@+id/etatWifi"
+        android:layout_width="194dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginRight="4dp"
+        android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toEndOf="@+id/etatWifiLabel"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.136"
+        tools:ignore="NotSibling" />
+
+    <TextView
+        android:id="@+id/etatScan"
+        android:layout_width="215dp"
+        android:layout_height="44dp"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.049" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

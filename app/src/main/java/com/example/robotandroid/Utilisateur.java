@@ -9,13 +9,15 @@ public class Utilisateur implements Serializable {
     String mdp;
 
 
-    public Utilisateur(String n, boolean a)
+    public Utilisateur(String n, boolean a,String leLogin,String leMdp)
     {
         this.nom = n;
         this.admin = a;
-        this.login="";
-        this.mdp="";
+        this.login=leLogin;
+        this.mdp=leMdp;
     }
+
+
 
     public void setMdp(String pwd)
     {

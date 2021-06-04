@@ -8,5 +8,7 @@
     <string name="envoieMessage">Envoyer un message sur le réseau :</string>
     <string name="hintEnvoieMessage">Ecrivez votre message ici</string>
     <string name="envoieMessageBtn">Envoyer</string>
+    <string name="etatWifi">état du Wifi :</string>
+
 
 </resources>

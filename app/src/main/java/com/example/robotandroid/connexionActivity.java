@@ -9,6 +9,8 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import com.example.robotandroid.Utilisateur;
+
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -23,6 +25,8 @@ public class connexionActivity extends AppCompatActivity {
     private Button retourButton;
     private String ipRobot;
     private String port;
+    private String mdp;
+    private String login;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,30 +57,13 @@ public class connexionActivity extends AppCompatActivity {
         connexionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Socket socket = null;
-                try {
-                    socket = new Socket(ipRobot, Integer.parseInt(port));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    OutputStream out = socket.getOutputStream();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                InputStream in = null;
-                try {
-                    in = socket.getInputStream();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                mdp = passwordEditText.getText().toString();
+                login = loginEditText.getText().toString();
 
-                //char[] message = new char[512];
-                //int read = in.read(message);
 
-                //   FaireUntrucAvecLeMessage(new String(message));
 
-             //   out.write("Une réponse au message reçu");
+
+
             }
         });
 
