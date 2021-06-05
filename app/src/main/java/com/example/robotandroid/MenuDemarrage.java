@@ -16,10 +16,11 @@ public class MenuDemarrage extends AbstractActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        IRobot robot = new RobotConnexion();
+        IRobot robot = new WifiListener();
         Controleur.initControleur(robot);
 
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_menu_demarrage);
         Button buttonGamme = findViewById(R.id.buttonGamme);
         buttonGamme.setOnClickListener(new View.OnClickListener() {
@@ -35,6 +36,31 @@ public class MenuDemarrage extends AbstractActivity {
                 OpenListeAppareilWifi();
             }
         });
+
+        Button buttonAuto = findViewById(R.id.buttonAuto);
+        buttonAuto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                controleur.mode("auto");
+            }
+        });
+
+        Button buttonManu = findViewById(R.id.buttonManuel);
+        buttonManu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                controleur.mode("manu");
+            }
+        });
+
+        Button buttonPanne = findViewById(R.id.buttonPanne);
+        buttonPanne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                controleur.mode("panne");
+            }
+        });
+
     }
     public void OpenMenuGamme()
     {

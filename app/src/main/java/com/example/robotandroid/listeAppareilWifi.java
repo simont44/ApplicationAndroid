@@ -8,13 +8,17 @@ import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.robotandroid.androidViews.CustomSpinner;
 import com.example.robotandroid.databinding.ActivityListeAppareilWifiBinding;
 import com.stealthcopter.networktools.SubnetDevices;
 import com.stealthcopter.networktools.subnet.Device;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.net.InetAddress;
@@ -23,41 +27,66 @@ import java.net.UnknownHostException;
 
 public class listeAppareilWifi extends AppCompatActivity {
 
-    private Spinner listeAppareilWifiSpinner;
+    private CustomSpinner listeAppareilWifiSpinner;
     private TextView etatWifiTextView;
     WifiManager wifiManager;
     private TextView etatScanTextView;
     private ArrayList<Device> devices;
+
+    Controleur controleur;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        controleur = Controleur.getInstance();
+        System.out.println("DEBUG");
         setContentView(R.layout.activity_liste_appareil_wifi);
         etatWifiTextView = (TextView)findViewById(R.id.etatWifi);
         etatScanTextView =(TextView)findViewById(R.id.etatScan);
-        this.listeAppareilWifiSpinner = (Spinner)findViewById(R.id.spinnerListeAppareilWifi);
-         devices = new ArrayList<Device>();
+        this.listeAppareilWifiSpinner = (CustomSpinner)findViewById(R.id.spinnerListeAppareilWifi);
+        devices = new ArrayList<Device>();
         findSubnetDevices();    //On lance la méthode qui récupère la liste des appareils connectés
         ArrayAdapter<Device> adapterDevice = new ArrayAdapter<Device>(this, android.R.layout.simple_spinner_dropdown_item,devices);
         adapterDevice.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.listeAppareilWifiSpinner.setAdapter(adapterDevice);
+
         this.listeAppareilWifiSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                onItemSelected(parent,view,position,id);
+                try {
+                    controleur.etablirConnexion(devices.get(position).ip);
+                } catch (IOException e) {
+                    System.out.println("DEBUG : Impossible de se connecter");
+                }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+                System.out.println("DEBUG : nothing selected");
+            }
+        });
 
+        Button buttonConnecter = (Button) findViewById((R.id.buttonConnecter));
+        buttonConnecter.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v) {
+                EditText login = (EditText) findViewById(R.id.textLogin);
+                EditText pwd = (EditText) findViewById(R.id.textPwd);
+
+                controleur.connecter(login.getText().toString(), pwd.getText().toString());
             }
         });
     }
 
 
     private void onItemSelectedHandler(AdapterView<?>adapterView,View view,int position,long id){
-        Adapter adapter =adapterView.getAdapter();
+        Adapter adapter = adapterView.getAdapter();
         Device device = (Device)adapter.getItem(position);
     }
+
     private void findSubnetDevices() {
 
         final long startTimeMillis = System.currentTimeMillis();

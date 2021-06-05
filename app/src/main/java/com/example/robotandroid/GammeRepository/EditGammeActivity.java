@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.robotandroid.AbstractActivity;
+import com.example.robotandroid.Controleur;
 import com.example.robotandroid.JSONManager;
 import com.example.robotandroid.ListGammeActivity;
 import com.example.robotandroid.MenuDemarrage;
@@ -30,7 +31,6 @@ public class EditGammeActivity extends AbstractActivity {
     private TextView TitreGamme;
     private TextView DescriptionGamme;
     private RecyclerView OperationRecyclerView;
-    private Gamme gamme;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +38,7 @@ public class EditGammeActivity extends AbstractActivity {
         setContentView(R.layout.activity_create_gamme);
 
         Intent itentUpdate = getIntent();
-        gamme = (Gamme) itentUpdate.getSerializableExtra("extragamme");
+
         OperationRecyclerView = findViewById(R.id.RecyclerView_ListOpe);
 
         Button buttonMenu = findViewById(R.id.button_menu1);
@@ -66,8 +66,8 @@ public class EditGammeActivity extends AbstractActivity {
 
         TitreGamme = findViewById(R.id.editText_titregamme);
         DescriptionGamme = findViewById(R.id.muliTextView_descriptionGamme);
-        this.TitreGamme.setText(gamme.id);
-        this.DescriptionGamme.setText(gamme.description);
+        this.TitreGamme.setText(controleur.gammeEnCreation.id);
+        this.DescriptionGamme.setText(controleur.gammeEnCreation.description);
         ApplyOperationAdapter();
     }
     public void RetourMenu()
@@ -80,19 +80,19 @@ public class EditGammeActivity extends AbstractActivity {
     {
         Intent menuGamme = new Intent(getApplicationContext(), ListGammeActivity.class);
 
-        if(gamme.listeOperations.size()==0) {
+        if(controleur.gammeEnCreation.listeOperations.size()==0) {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(EditGammeActivity.this);
-            alertDialogBuilder.setMessage("La gamme n'a pas d'opération. Vous devez en créer au moins une avant de la sauvegarder");
+            alertDialogBuilder.setMessage("La controleur.gammeEnCreation n'a pas d'opération. Vous devez en créer au moins une avant de la sauvegarder");
             alertDialogBuilder.setPositiveButton("Creer Opération", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     CreateOperation();
                 }
             });
-            alertDialogBuilder.setNegativeButton("Supprimer la gamme", new DialogInterface.OnClickListener() {
+            alertDialogBuilder.setNegativeButton("Supprimer la controleur.gammeEnCreation", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    ListGammeActivity.ListeGamme.remove(gamme);
+                    ListGammeActivity.ListeGamme.remove(controleur.gammeEnCreation);
                     startActivity(menuGamme);
                     finish();
                 }
@@ -101,32 +101,28 @@ public class EditGammeActivity extends AbstractActivity {
             alertDialog.show();
         }else{
 
-            gamme.id = ((TextView) findViewById(R.id.editText_titregamme)).getText().toString();
-            gamme.description = ((TextView) findViewById(R.id.muliTextView_descriptionGamme)).getText().toString();
-            MessageJSON msg = new MessageJSON(MessageJSON.TypeMessage.editer, gamme);
-            JSONManager.listMessage.add(msg);
+            controleur.gammeEnCreation.id = ((TextView) findViewById(R.id.editText_titregamme)).getText().toString();
+            controleur.gammeEnCreation.description = ((TextView) findViewById(R.id.muliTextView_descriptionGamme)).getText().toString();
+
+            controleur.creerGamme(controleur.gammeEnCreation);
+
             startActivity(menuGamme);
             finish();
         }
     }
     public void CreateOperation()
     {
-        Operation operation = new Operation("nouveau","nouveau");
+        Operation operation = new Operation("nouveau", "nouveau");
+        controleur.gammeEnCreation.AjouterOperation(operation);
+
         Intent menuOpe = new Intent(this, EditOperationActivity.class);
-
-        try{
-            gamme.AjouterOperation(operation);
-        }catch(Exception e) {
-        }
-
-        menuOpe.putExtra("numOpe",gamme.getListeOperations().indexOf(operation));
-        menuOpe.putExtra("extragamme",gamme);
+        menuOpe.putExtra("numOpe", controleur.gammeEnCreation.getListeOperations().indexOf(operation));
         startActivity(menuOpe);
         finish();
     }
     private void ApplyOperationAdapter(){
         //Appel à la sauvegarde des operations
-        OperationAdapter adapter = new OperationAdapter(gamme);
+        OperationAdapter adapter = new OperationAdapter(controleur.gammeEnCreation);
         OperationRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         OperationRecyclerView.setAdapter(adapter);
     }

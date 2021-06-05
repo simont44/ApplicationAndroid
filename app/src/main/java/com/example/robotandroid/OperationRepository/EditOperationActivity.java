@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.robotandroid.AbstractActivity;
+import com.example.robotandroid.Controleur;
 import com.example.robotandroid.GammeRepository.EditGammeActivity;
 import com.example.robotandroid.GammeRepository.Gamme;
 import com.example.robotandroid.MenuDemarrage;
@@ -28,17 +29,18 @@ public class EditOperationActivity extends AbstractActivity {
     private TextView TitreOperation;
     private TextView DescriptionOperation;
     private RecyclerView tacheRecyclerView;
-    private Gamme gamme;
-    private Operation uneoperation;
+    private Operation operation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_create_operation);
         tacheRecyclerView = findViewById(R.id.recyclerView_listetâche);
-        gamme = (Gamme) getIntent().getSerializableExtra("extragamme");
+
         int numOpe = getIntent().getIntExtra("numOpe",-2);
-        uneoperation = gamme.getListeOperations().get(numOpe);
+        System.out.println(numOpe);
+        operation = controleur.gammeEnCreation.getListeOperations().get(numOpe);
 
         Button buttonCreateTache = findViewById(R.id.button_createTache);
         buttonCreateTache.setOnClickListener(new View.OnClickListener() {
@@ -53,7 +55,7 @@ public class EditOperationActivity extends AbstractActivity {
             public void onClick(View v) {
                 Intent menuGamme = new Intent(getApplicationContext(), EditGammeActivity.class);
 
-                if(uneoperation.ListeTaches.size()==0) {
+                if(operation.ListeTaches.size()==0) {
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(EditOperationActivity.this);
                     alertDialogBuilder.setMessage("L'Opération n'a pas de tâche. Vous devez en créer au moins une avant de la sauvegarder");
                     alertDialogBuilder.setPositiveButton("Créer Tâche", new DialogInterface.OnClickListener() {
@@ -65,8 +67,8 @@ public class EditOperationActivity extends AbstractActivity {
                     alertDialogBuilder.setNegativeButton("Supprimer l'opération", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            gamme.getListeOperations().remove(uneoperation);
-                            menuGamme.putExtra("extragamme",gamme);
+                            controleur.gammeEnCreation.getListeOperations().remove(operation);
+                            menuGamme.putExtra("extragamme",controleur.gammeEnCreation);
                             startActivity(menuGamme);
                             finish();
                         }
@@ -82,36 +84,39 @@ public class EditOperationActivity extends AbstractActivity {
         });
         TitreOperation = findViewById(R.id.editText_Titreoperation);
         DescriptionOperation = findViewById(R.id.editText_descriptionOperation);
-        this.TitreOperation.setText(uneoperation.titre);
-        this.DescriptionOperation.setText(uneoperation.description);
-        Log.e("nbTaches",""+uneoperation.ListeTaches.size());
+        this.TitreOperation.setText(operation.titre);
+        this.DescriptionOperation.setText(operation.description);
+        Log.e("nbTaches",""+operation.ListeTaches.size());
         ApplyTacheAdapter();
     }
 
     private void ApplyTacheAdapter() {
-        TacheAdapter adapter = new TacheAdapter(gamme, uneoperation);
+        TacheAdapter adapter = new TacheAdapter(controleur.gammeEnCreation, operation);
         tacheRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         tacheRecyclerView.setAdapter(adapter);
     }
     public void SauvegarderOperation(){
         Intent menuOpe = new Intent(this, EditGammeActivity.class);
-        uneoperation.titre = ((TextView) findViewById(R.id.editText_Titreoperation)).getText().toString();
-        uneoperation.description = ((TextView) findViewById(R.id.editText_descriptionOperation)).getText().toString();
-        menuOpe.putExtra("extragamme",gamme);
+        operation.titre = ((TextView) findViewById(R.id.editText_Titreoperation)).getText().toString();
+        operation.description = ((TextView) findViewById(R.id.editText_descriptionOperation)).getText().toString();
+
         startActivity(menuOpe);
         finish();
     }
 
     public void CreateTache()
     {
-        Tache tache = new Tache(Tache.TypeAction.Attendre, 0);
-        uneoperation.AjouterTache(tache);
+        Tache tache = new Tache("x", "", Tache.TypeAction.Attendre, 0, 'A');
+
+        operation.AjouterTache(tache);
+
         Intent menutache = new Intent(this, EditTacheActivity.class);
-        uneoperation.titre = ((TextView) findViewById(R.id.editText_Titreoperation)).getText().toString();
-        uneoperation.description = ((TextView) findViewById(R.id.editText_descriptionOperation)).getText().toString();
-        menutache.putExtra("extragamme",gamme);
-        menutache.putExtra("numOpe",gamme.getListeOperations().indexOf(uneoperation));
-        menutache.putExtra("numTache",uneoperation.ListeTaches.indexOf(tache));
+        operation.titre = ((TextView) findViewById(R.id.editText_Titreoperation)).getText().toString();
+        operation.description = ((TextView) findViewById(R.id.editText_descriptionOperation)).getText().toString();
+
+        menutache.putExtra("numOpe", controleur.gammeEnCreation.getListeOperations().indexOf(operation));
+        menutache.putExtra("numTache",operation.getListeTaches().indexOf(tache));
+
         startActivity(menutache);
         finish();
     }

@@ -11,20 +11,21 @@ public class Gamme implements Serializable {
     String description;
     ArrayList<Operation> listeOperations;
 
+    public int nbOperations;
+
 
     public Gamme(String i, String d)
     {
+        nbOperations = 0;
         this.id = i;
         this.description = d;
         listeOperations = new ArrayList<Operation>();
     }
 
 
-    public void AjouterOperation(Operation o) throws Exception {
-        if(!listeOperations.contains(o))
-            listeOperations.add(o);
-        else
-            throw new Exception("Cette opération est déjà présente dans la gamme.");
+    public void AjouterOperation(Operation o) {
+        listeOperations.add(o);
+        nbOperations++;
     }
 
     public String getId() {
@@ -37,7 +38,10 @@ public class Gamme implements Serializable {
 
     public void SupprimerOperation(Operation o) throws Exception {
         if (listeOperations.contains(o))
+        {
             listeOperations.remove(o);
+            nbOperations--;
+        }
         else
             throw new Exception("Cette opération n'est pas présente dans la gamme.");
     }

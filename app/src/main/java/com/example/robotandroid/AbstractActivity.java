@@ -21,10 +21,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.io.IOException;
 
 public class AbstractActivity extends AppCompatActivity {
+    protected Controleur controleur;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        controleur = Controleur.getInstance();
     }
 
     @Override
@@ -74,12 +76,7 @@ public class AbstractActivity extends AppCompatActivity {
         alertDialogBuilder.setPositiveButton("Sauvegarder", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                try {
-                    JSONManager.SendAllList();
-                    Log.e("SaveBDD","Les données sont sauvegardées et envoyées à la BDD");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                controleur.creerGamme(controleur.gammeEnCreation);
                 Intent MenuDemarrage = new Intent(getApplicationContext(), MenuDemarrage.class);
                 startActivity(MenuDemarrage);
                 finish();

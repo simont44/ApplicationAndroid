@@ -1,7 +1,11 @@
 package com.example.robotandroid;
 
 import com.example.robotandroid.GammeRepository.Gamme;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -14,6 +18,8 @@ public class Controleur {
     HashMap<String, Gamme> listeGammes;
     Utilisateur utilisateurConnecté;
     String nom; //recuperer le nom renseigné par le robot
+
+    public Gamme gammeEnCreation;
 
 
     public static void initControleur(IRobot robot)
@@ -59,6 +65,35 @@ public class Controleur {
     }
 
 
+    public void executerGamme(int id)
+    {
+        try
+        {
+            JSONObject json = new JSONObject();
+            json.put("action", "execG");
+            json.put("idGamme", String.valueOf(id));
+
+            robot.envoyerMessage(new Gson().toJson(json));
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public void mode(String m)
+    {
+        try
+        {
+            JsonObject json = new JsonObject();
+            json.addProperty("action", m == null ? "auto" : m);
+
+            robot.envoyerMessage(new Gson().toJson(json));
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
     public HashMap<String, Gamme> recupererGammes()
     {
         return robot.recupererGammes();
@@ -72,7 +107,18 @@ public class Controleur {
 
     public void connecter(String login, String pwd)
     {
-        robot.connecter(login, pwd);
+        try
+        {
+            JsonObject json = new JsonObject();
+            json.addProperty("action", "co");
+            json.addProperty("login", login);
+            json.addProperty("pwd", pwd);
+
+            robot.envoyerMessage(new Gson().toJson(json));
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
 

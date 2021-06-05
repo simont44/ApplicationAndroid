@@ -6,12 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".listeAppareilWifi">
 
-    <Spinner
+    <com.example.robotandroid.androidViews.CustomSpinner
         android:id="@+id/spinnerListeAppareilWifi"
         android:layout_width="204dp"
         android:layout_height="52dp"
         android:layout_marginStart="76dp"
         android:layout_marginLeft="76dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="104dp"
         android:layout_marginRight="104dp"
         android:outlineAmbientShadowColor="@color/purple_500"
@@ -19,8 +20,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="327dp" />
+        app:layout_constraintTop_toBottomOf="@+id/labelListeAppareilWifi"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/labelListeAppareilWifi"
@@ -74,6 +75,61 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.049" />
+
+    <EditText
+        android:id="@+id/textLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textNoSuggestions"
+        android:text="Login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerListeAppareilWifi" />
+
+    <EditText
+        android:id="@+id/textPwd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textLogin" />
+
+    <Button
+        android:id="@+id/buttonConnecter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Se connecter"
+        android:textAlignment="textStart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textPwd"
+        android:gravity="start" />
+
+    <TextView
+        android:id="@+id/textViewLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Login :"
+        android:textAlignment="textStart"
+        app:layout_constraintEnd_toStartOf="@+id/textLogin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textLogin"
+        android:gravity="start" />
+
+    <TextView
+        android:id="@+id/textViewPwd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:text="Mot de passe :"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintEnd_toStartOf="@+id/textPwd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textPwd" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

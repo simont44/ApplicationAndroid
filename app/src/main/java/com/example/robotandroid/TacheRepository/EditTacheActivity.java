@@ -10,6 +10,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.example.robotandroid.AbstractActivity;
+import com.example.robotandroid.Controleur;
 import com.example.robotandroid.GammeRepository.Gamme;
 import com.example.robotandroid.OperationRepository.EditOperationActivity;
 import com.example.robotandroid.OperationRepository.Operation;
@@ -17,25 +18,26 @@ import com.example.robotandroid.R;
 
 public class EditTacheActivity extends AbstractActivity {
     //Affichage et edition d'une seule tache.
-    private Gamme gamme;
-    private Operation uneoperation;
-    private Tache tache;
     private RadioButton buttonTurn;
     private RadioButton buttonWait;
     private TextView textValue;
 
+    private Operation operation;
+    private Tache tache;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_menu_tache);
 
-        gamme = (Gamme) getIntent().getSerializableExtra("extragamme");
         //uneoperation = (Operation) getIntent().getSerializableExtra("extraope");
         //tache = (Tache) getIntent().getSerializableExtra("extratache");
         int numOpe = getIntent().getIntExtra("numOpe",-2);
         int numTache = getIntent().getIntExtra("numTache",-2);
-        uneoperation = gamme.getListeOperations().get(numOpe);
-        tache = uneoperation.getListeTaches().get(numTache);
+        operation = controleur.gammeEnCreation.getListeOperations().get(numOpe);
+        tache = operation.getListeTaches().get(numTache);
 
         buttonTurn = findViewById(R.id.radioButton_turn);
         buttonWait = findViewById(R.id.radioButton_wait);
@@ -43,7 +45,7 @@ public class EditTacheActivity extends AbstractActivity {
 
         buttonTurn.setChecked(tache.typeAction.equals(Tache.TypeAction.Tourner));
         buttonWait.setChecked(tache.typeAction.equals(Tache.TypeAction.Attendre));
-        textValue.setText(""+tache.valeur);
+        textValue.setText(String.valueOf(tache.valeur));
         ImageButton buttonRetourOpe = findViewById(R.id.imagebutton_retourOpération);
         buttonRetourOpe.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +64,8 @@ public class EditTacheActivity extends AbstractActivity {
     public void RetourMenuOpe()
     {
         Intent menuOpe = new Intent(this, EditOperationActivity.class);
+
+        menuOpe.putExtra("numOpe", controleur.gammeEnCreation.getListeOperations().indexOf(operation));
         startActivity(menuOpe);
         finish();
     }
@@ -69,17 +73,14 @@ public class EditTacheActivity extends AbstractActivity {
     public void ValiderEdition()
     {
         //Sauvegarde de la tache à faire
-        Intent menuOpe = new Intent(this, EditOperationActivity.class);
         tache.valeur = Integer.parseInt(textValue.getText().toString());
         if(buttonTurn.isChecked()){
             tache.typeAction = Tache.TypeAction.Tourner;
         }else{
             tache.typeAction = Tache.TypeAction.Attendre;
         }
-        menuOpe.putExtra("extragamme",gamme);
-        menuOpe.putExtra("numOpe",getIntent().getIntExtra("numOpe",-2));
-        startActivity(menuOpe);
-        finish();
+
+        RetourMenuOpe();
     }
 
     @Override

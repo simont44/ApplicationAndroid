@@ -50,7 +50,7 @@ public class JSONManager {
         Operation op1 = new Operation("Tourner","ça tourne");
         try {
             gamme2.AjouterOperation(op1);
-            op1.AjouterTache(new Tache(Tache.TypeAction.Attendre,5));
+            op1.AjouterTache(new Tache("1", "attendre", Tache.TypeAction.Attendre, 1000,'A'));
         } catch (Exception e) {
             e.printStackTrace();
         }

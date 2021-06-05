@@ -25,6 +25,7 @@ public class ListGammeActivity extends AbstractActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_menu_gamme);
 
         Button buttonMenu = findViewById(R.id.buttonMenu);
@@ -43,6 +44,13 @@ public class ListGammeActivity extends AbstractActivity {
             }
         });
 
+        Button buttonExecuterGamme = findViewById(R.id.buttonExec);
+        buttonExecuterGamme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                controleur.executerGamme(v.getId());
+            }
+        });
 
         GammeRecyclerView = findViewById(R.id.ViewListGamme);
         ApplyGammeAdapter();
@@ -58,10 +66,10 @@ public class ListGammeActivity extends AbstractActivity {
     //a copier pour les taches
     public void CreateGamme()
     {
-        Gamme gamme = new Gamme("nouveau","nouveau");
-        this.ListeGamme.add(gamme);
+        controleur.gammeEnCreation = new Gamme("nouveau","nouveau");
+        this.ListeGamme.add(controleur.gammeEnCreation);
+
         Intent menuCreate = new Intent(this, EditGammeActivity.class);
-        menuCreate.putExtra("extragamme",gamme);
         startActivity(menuCreate);
         finish();
 

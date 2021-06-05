@@ -10,6 +10,8 @@ public class Operation implements Serializable {
     String titre;
     String description;
 
+    public int nbTaches;
+
     public Operation(String titre, String description)
     {
         this.titre = titre;
@@ -21,12 +23,14 @@ public class Operation implements Serializable {
     public void AjouterTache(Tache t)
     {
         ListeTaches.add(t);
+        nbTaches++;
     }
 
 
     public void SupprimerTache(Tache t)
     {
         ListeTaches.remove(t);
+        nbTaches--;
     }
 
     public ArrayList<Tache> getListeTaches() {
