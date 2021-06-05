@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignWithParentIfMissing="false"
+    android:background="#B3F6FF">
+
+    <TextView
+        android:id="@+id/TV_text_sav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:singleLine="true"
+        android:text="Certaines de vos données n'ont pas été sauvegardés"
+        android:textColor="#000000" />
+
+    <TextView
+        android:id="@+id/popup_sav_interaction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:clickable="true"
+        android:gravity="right"
+        android:singleLine="true"
+        android:text="Sauvegarder"
+        android:textColor="#3F51B5"
+        android:textStyle="bold" />
+</LinearLayout>
