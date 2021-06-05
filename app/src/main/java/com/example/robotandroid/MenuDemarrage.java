@@ -21,12 +21,18 @@ public class MenuDemarrage extends AbstractActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_demarrage);
-
         Button buttonGamme = findViewById(R.id.buttonGamme);
         buttonGamme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 OpenMenuGamme();
+            }
+        });
+        Button buttonConnexion = findViewById(R.id.buttonConnect);
+        buttonConnexion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OpenListeAppareilWifi();
             }
         });
     }
@@ -40,5 +46,10 @@ public class MenuDemarrage extends AbstractActivity {
         }
        Intent menu = new Intent(this, ListGammeActivity.class);
        startActivity(menu);
+    }
+
+    public void OpenListeAppareilWifi(){
+        Intent listeAppareilWifi = new Intent(this, listeAppareilWifi.class);
+        startActivity(listeAppareilWifi);
     }
 }
