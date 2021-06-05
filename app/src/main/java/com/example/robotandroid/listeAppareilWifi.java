@@ -26,7 +26,6 @@ public class listeAppareilWifi extends AppCompatActivity {
     private Spinner listeAppareilWifiSpinner;
     private TextView etatWifiTextView;
     WifiManager wifiManager;
-    ArrayList<InetAddress> listeAdresseIp;
     private TextView etatScanTextView;
     private ArrayList<Device> devices;
     @Override
@@ -36,11 +35,11 @@ public class listeAppareilWifi extends AppCompatActivity {
         etatWifiTextView = (TextView)findViewById(R.id.etatWifi);
         etatScanTextView =(TextView)findViewById(R.id.etatScan);
         this.listeAppareilWifiSpinner = (Spinner)findViewById(R.id.spinnerListeAppareilWifi);
+         devices = new ArrayList<Device>();
         findSubnetDevices();    //On lance la méthode qui récupère la liste des appareils connectés
         ArrayAdapter<Device> adapterDevice = new ArrayAdapter<Device>(this, android.R.layout.simple_spinner_dropdown_item,devices);
         adapterDevice.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.listeAppareilWifiSpinner.setAdapter(adapterDevice);
-
         this.listeAppareilWifiSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
