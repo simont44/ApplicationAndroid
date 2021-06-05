@@ -4,6 +4,7 @@ import com.example.robotandroid.GammeRepository.Gamme;
 
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 public interface IRobot {
@@ -27,5 +28,9 @@ public interface IRobot {
 
     public JSONObject recupererStatut();
 
-    void envoyerMessage(String message);
+    void envoyerMessage(String message) throws IOException;
+
+    public void ouvrir(String ip) throws IOException;
+
+    public void fermer();
 }

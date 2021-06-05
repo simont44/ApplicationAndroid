@@ -3,15 +3,35 @@ package com.example.robotandroid;
 import com.example.robotandroid.GammeRepository.Gamme;
 
 import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.HashMap;
 
+// Changement en classe Singleton pour que tous les écrans utilisent lemême
 public class Controleur {
+    static Controleur controleurInstance;
     IRobot robot;
     HashMap<String, Gamme> listeGammes;
     Utilisateur utilisateurConnecté;
-    String nom; //recuperer le nom rensigner par le robot
+    String nom; //recuperer le nom renseigné par le robot
 
-    public void Controleur(IRobot r)
+
+    public static void initControleur(IRobot robot)
+    {
+        if(controleurInstance != null) return;
+        controleurInstance = new Controleur(robot);
+    }
+
+
+    public static Controleur getInstance()
+    {
+        return controleurInstance;
+    }
+
+
+    private Controleur() {};
+
+    private Controleur(IRobot r)
     {
         this.robot = r;
         this.listeGammes = new HashMap<String, Gamme>();
@@ -42,6 +62,11 @@ public class Controleur {
     public HashMap<String, Gamme> recupererGammes()
     {
         return robot.recupererGammes();
+    }
+
+
+    public void etablirConnexion(String ip) throws IOException {
+        robot.ouvrir(ip);
     }
 
 

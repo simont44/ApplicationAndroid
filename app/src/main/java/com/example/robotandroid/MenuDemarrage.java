@@ -16,6 +16,9 @@ public class MenuDemarrage extends AbstractActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        IRobot robot = new RobotConnexion();
+        Controleur.initControleur(robot);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_demarrage);
 
