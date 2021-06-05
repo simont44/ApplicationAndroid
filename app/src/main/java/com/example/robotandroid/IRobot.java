@@ -1,8 +1,9 @@
 package com.example.robotandroid;
 
+import com.example.robotandroid.GammeRepository.Gamme;
+
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public interface IRobot {
