@@ -129,7 +129,7 @@ public class EditGammeActivity extends AbstractActivity {
 
     @Override
     protected void onStop() {
-        this.SauvegarderGamme();
+    //    this.SauvegarderGamme();
         super.onStop();
     }
 }
