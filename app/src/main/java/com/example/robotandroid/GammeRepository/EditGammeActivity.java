@@ -82,14 +82,14 @@ public class EditGammeActivity extends AbstractActivity {
 
         if(controleur.gammeEnCreation.listeOperations.size()==0) {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(EditGammeActivity.this);
-            alertDialogBuilder.setMessage("La controleur.gammeEnCreation n'a pas d'opération. Vous devez en créer au moins une avant de la sauvegarder");
+            alertDialogBuilder.setMessage("La gamme n'a pas d'opération. Vous devez en créer au moins une avant de la sauvegarder");
             alertDialogBuilder.setPositiveButton("Creer Opération", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     CreateOperation();
                 }
             });
-            alertDialogBuilder.setNegativeButton("Supprimer la controleur.gammeEnCreation", new DialogInterface.OnClickListener() {
+            alertDialogBuilder.setNegativeButton("Supprimer la gamme", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     ListGammeActivity.ListeGamme.remove(controleur.gammeEnCreation);
@@ -129,7 +129,7 @@ public class EditGammeActivity extends AbstractActivity {
 
     @Override
     protected void onStop() {
-        //this.SauvegarderGamme();
+        this.SauvegarderGamme();
         super.onStop();
     }
 }
