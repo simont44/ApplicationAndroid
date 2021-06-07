@@ -44,6 +44,8 @@ public class ListGammeActivity extends AbstractActivity {
             }
         });
 
+//Ne fonctionne pas et fait planter l'appli après clique sur Gamme
+/*
         Button buttonExecuterGamme = findViewById(R.id.buttonExec);
         buttonExecuterGamme.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +53,7 @@ public class ListGammeActivity extends AbstractActivity {
                 controleur.executerGamme(v.getId());
             }
         });
+*/
 
         GammeRecyclerView = findViewById(R.id.ViewListGamme);
         ApplyGammeAdapter();
