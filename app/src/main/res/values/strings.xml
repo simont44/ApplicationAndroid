@@ -20,5 +20,13 @@
     <string name="envoieMessageBtn">Envoyer</string>
     <string name="etatWifi">état du Wifi :</string>
 
+    <!-- Dropdown moteurs de l'écran EditTache -->
+    <string-array name="listeMoteurs">
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+        <item>D</item>
+    </string-array>
+
 
 </resources>

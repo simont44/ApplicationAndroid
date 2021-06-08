@@ -2,6 +2,8 @@ package com.example.robotandroid;
 
 import com.example.robotandroid.GammeRepository.Gamme;
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
 import org.json.JSONObject;
 
@@ -29,8 +31,13 @@ public class WifiListener implements IRobot
 
 
     @Override
-    public void creerGamme(Gamme g) {
-
+    public void creerGamme(Gamme g)
+    {
+        Gson gson = new Gson();
+        JsonObject json = new JsonObject();
+        json.addProperty("action", "newG");
+        json.add("gamme", gson.toJsonTree(g));
+        envoyerMessage(gson.toJson(json));
     }
 
     @Override
@@ -43,6 +50,16 @@ public class WifiListener implements IRobot
 
     }
 
+
+    @Override
+    public void executerGamme(String idGamme)
+    {
+        JsonObject json = new JsonObject();
+        json.addProperty("action", "execG");
+        json.addProperty("idGamme", idGamme);
+        envoyerMessage(new Gson().toJson(json));
+    }
+
     @Override
     public HashMap<String, Gamme> recupererGammes() {
         return null;
@@ -51,12 +68,23 @@ public class WifiListener implements IRobot
     @Override
     public void connecter(String login, String pwd)
     {
-
+        JsonObject json = new JsonObject();
+        json.addProperty("action", "co");
+        json.addProperty("login", login);
+        json.addProperty("pwd", pwd);
+        envoyerMessage(new Gson().toJson(json));
     }
 
     @Override
-    public void deconnecter() {
-
+    public void deconnecter()
+    {
+        try {
+            JsonObject json = new JsonObject();
+            json.addProperty("action", "deco");
+            envoyerMessage(new Gson().toJson(json));
+            socket.close();
+        } catch (Exception e) {
+        }
     }
 
     @Override
@@ -98,6 +126,7 @@ public class WifiListener implements IRobot
             }
         });
     }
+
 
     @Override
     public void ouvrir(String ip) {

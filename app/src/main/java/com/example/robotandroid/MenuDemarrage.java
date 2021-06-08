@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.annotation.StringRes;
+
 import com.example.robotandroid.GammeRepository.Gamme;
 
 import java.io.IOException;
@@ -30,12 +32,28 @@ public class MenuDemarrage extends AbstractActivity {
             }
         });
         Button buttonConnexion = findViewById(R.id.buttonConnect);
-        buttonConnexion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                OpenListeAppareilWifi();
-            }
-        });
+        if(controleur.utilisateurConnecté == null)
+        {
+            buttonConnexion.setText("Connecter");
+            buttonConnexion.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    OpenListeAppareilWifi();
+                }
+            });
+        }
+        else
+        {
+            buttonConnexion.setText("Déconnecter");
+            buttonConnexion.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    controleur.deconnecter();
+                    buttonConnexion.setText("Connecter");
+                }
+            });
+        }
+
 
         Button buttonAuto = findViewById(R.id.buttonAuto);
         buttonAuto.setOnClickListener(new View.OnClickListener() {
@@ -60,16 +78,10 @@ public class MenuDemarrage extends AbstractActivity {
                 controleur.mode("panne");
             }
         });
-
     }
     public void OpenMenuGamme()
     {
-        try {
-          ListGammeActivity.ListeGamme = JSONManager.GetDataFromBDD();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        //TODO : ListeGammeActivity.listeGammes = controleur.recupererGammes();
        Intent menu = new Intent(this, ListGammeActivity.class);
        startActivity(menu);
     }

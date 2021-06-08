@@ -34,41 +34,6 @@ public class AbstractActivity extends AppCompatActivity {
        super.onStop();
     }
 
-    //Quand on a des données non sauvegardées, on lance l'application
-    protected void AfficherSauvegarde(View parent){
-
-        // inflate the layout of the popup window
-        LayoutInflater inflater = (LayoutInflater)
-                getSystemService(LAYOUT_INFLATER_SERVICE);
-        View popupView = inflater.inflate(R.layout.popup_sauvegarde, null);
-
-        // create the popup window
-        int width = LinearLayout.LayoutParams.MATCH_PARENT;
-        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-        boolean focusable = false; // lets taps outside the popup also dismiss it
-        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
-
-        // show the popup window
-        // which view you pass in doesn't matter, it is only used for the window tolken
-
-        parent.post(new Runnable() {
-            @Override
-            public void run() {
-                if (JSONManager.listMessage.size() != 0) {
-                    popupWindow.showAtLocation(parent, Gravity.TOP, 0, 0);
-                    TextView text_popup = popupView.findViewById(R.id.popup_sav_interaction);
-
-                    text_popup.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            AfficherMessagePop();
-                        }
-                    });
-
-                }
-            }
-        });
-    }
 
     public void AfficherMessagePop(){
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(AbstractActivity.this);

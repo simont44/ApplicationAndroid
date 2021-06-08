@@ -50,8 +50,8 @@ public class TacheViewHolder extends RecyclerView.ViewHolder {
                 SupprimerTache();
             }
         });
-        textViewValue.setText(tache.valeur+"");
-        textViewTypeAction.setText(tache.typeAction.toString());
+        textViewValue.setText(tache.getValeur() + "");
+        textViewTypeAction.setText(tache.getTypeAction().toString());
     }
     public void SupprimerTache(){
 

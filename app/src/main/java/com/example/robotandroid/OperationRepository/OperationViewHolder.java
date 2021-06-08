@@ -52,7 +52,7 @@ public class OperationViewHolder extends RecyclerView.ViewHolder {
         });
         this.uneoperation = uneope;
         this.gamme = gamme;
-        TextViewOperation.setText(uneoperation.titre);
+        TextViewOperation.setText(uneoperation.id);
     }
     //On envoie sur l'activité de création en donnant les fichiers en paramètres
     public  void GoToEditerOperation()

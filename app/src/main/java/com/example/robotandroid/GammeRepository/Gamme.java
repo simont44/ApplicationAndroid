@@ -5,60 +5,57 @@ import com.example.robotandroid.OperationRepository.Operation;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Gamme implements Serializable {
-
+public class Gamme implements Serializable
+{
     String id;
     String description;
     ArrayList<Operation> listeOperations;
 
-    public int nbOperations;
-
-
-    public Gamme(String i, String d)
-    {
-        nbOperations = 0;
+    public Gamme(String i, String d) {
         this.id = i;
         this.description = d;
-        listeOperations = new ArrayList<Operation>();
+        this.listeOperations = new ArrayList<>();
     }
+
+
+    public Gamme() {}
 
 
     public void AjouterOperation(Operation o) {
-        listeOperations.add(o);
-        nbOperations++;
+        this.listeOperations.add(o);
     }
 
-    public String getId() {
-        return id;
+
+    public void SupprimerOperation(Operation o) throws Exception {
+        if (this.listeOperations.contains(o)) {
+            this.listeOperations.remove(o);
+        } else {
+            throw new Exception("Cette operation n'est pas presente dans la gamme.");
+        }
     }
+
+
+    public String getId() {
+        return this.id;
+    }
+
 
     public void setId(String id) {
         this.id = id;
     }
 
-    public void SupprimerOperation(Operation o) throws Exception {
-        if (listeOperations.contains(o))
-        {
-            listeOperations.remove(o);
-            nbOperations--;
-        }
-        else
-            throw new Exception("Cette opération n'est pas présente dans la gamme.");
-    }
 
     public String getDescription() {
-        return description;
+        return this.description;
     }
+
 
     public void setDescription(String description) {
         this.description = description;
     }
 
-    public ArrayList<Operation> getListeOperations() {
-        return listeOperations;
-    }
 
-    public void setListeOperations(ArrayList<Operation> listeOperations) {
-        this.listeOperations = listeOperations;
+    public ArrayList<Operation> getListeOperations() {
+        return this.listeOperations;
     }
 }

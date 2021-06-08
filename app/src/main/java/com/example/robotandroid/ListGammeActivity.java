@@ -44,17 +44,8 @@ public class ListGammeActivity extends AbstractActivity {
             }
         });
 
-        Button buttonExecuterGamme = findViewById(R.id.buttonExec);
-        buttonExecuterGamme.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                controleur.executerGamme(v.getId());
-            }
-        });
-
         GammeRecyclerView = findViewById(R.id.ViewListGamme);
         ApplyGammeAdapter();
-        AfficherSauvegarde(findViewById(R.id.root_menugamme));
     }
     public void RetourMenu()
     {
@@ -66,7 +57,7 @@ public class ListGammeActivity extends AbstractActivity {
     //a copier pour les taches
     public void CreateGamme()
     {
-        controleur.gammeEnCreation = new Gamme("nouveau","nouveau");
+        controleur.gammeEnCreation = new Gamme("nom","description");
         this.ListeGamme.add(controleur.gammeEnCreation);
 
         Intent menuCreate = new Intent(this, EditGammeActivity.class);

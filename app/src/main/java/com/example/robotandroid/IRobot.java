@@ -14,6 +14,8 @@ public interface IRobot {
 
     public void supprimerGamme(Gamme g);
 
+    public void executerGamme(String idGamme);
+
     public HashMap<String, Gamme> recupererGammes();
 
     public void connecter(String login, String pwd);

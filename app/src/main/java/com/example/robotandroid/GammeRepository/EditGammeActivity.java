@@ -7,24 +7,17 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.robotandroid.AbstractActivity;
-import com.example.robotandroid.Controleur;
-import com.example.robotandroid.JSONManager;
 import com.example.robotandroid.ListGammeActivity;
 import com.example.robotandroid.MenuDemarrage;
-import com.example.robotandroid.MessageJSON;
 import com.example.robotandroid.OperationRepository.EditOperationActivity;
 import com.example.robotandroid.OperationRepository.Operation;
 import com.example.robotandroid.OperationRepository.OperationAdapter;
 import com.example.robotandroid.R;
-
-import java.io.IOException;
-import java.util.List;
 
 public class EditGammeActivity extends AbstractActivity {
 

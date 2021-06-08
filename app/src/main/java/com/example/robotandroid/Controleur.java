@@ -1,5 +1,8 @@
 package com.example.robotandroid;
 
+import android.app.Activity;
+import android.content.Context;
+
 import com.example.robotandroid.GammeRepository.Gamme;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -18,6 +21,7 @@ public class Controleur {
     HashMap<String, Gamme> listeGammes;
     Utilisateur utilisateurConnecté;
     String nom; //recuperer le nom renseigné par le robot
+    Context ecranCourant;
 
     public Gamme gammeEnCreation;
 
@@ -40,16 +44,18 @@ public class Controleur {
     private Controleur(IRobot r)
     {
         this.robot = r;
-        this.listeGammes = new HashMap<String, Gamme>();
         //on renseigne le nom et le type de l'utilisateur
-        this.utilisateurConnecté = new Utilisateur(nom , false, "","");
+        this.utilisateurConnecté = null;
         listeGammes = recupererGammes();
+        if(listeGammes == null)
+            this.listeGammes = new HashMap<String, Gamme>();
     }
 
 
     public void creerGamme(Gamme g)
     {
         robot.creerGamme(g);
+        listeGammes.put(g.getId(), g);
     }
 
 
@@ -65,19 +71,9 @@ public class Controleur {
     }
 
 
-    public void executerGamme(int id)
+    public void executerGamme(String id)
     {
-        try
-        {
-            JSONObject json = new JSONObject();
-            json.put("action", "execG");
-            json.put("idGamme", String.valueOf(id));
-
-            robot.envoyerMessage(new Gson().toJson(json));
-        } catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+        robot.executerGamme(id);
     }
 
     public void mode(String m)
@@ -107,24 +103,17 @@ public class Controleur {
 
     public void connecter(String login, String pwd)
     {
-        try
-        {
-            JsonObject json = new JsonObject();
-            json.addProperty("action", "co");
-            json.addProperty("login", login);
-            json.addProperty("pwd", pwd);
-
-            robot.envoyerMessage(new Gson().toJson(json));
-        } catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+        if(utilisateurConnecté == null)
+            robot.connecter(login, pwd);
+        else
+            System.out.println(String.format("Déjà connecté en tant que %s.", utilisateurConnecté.login));
     }
 
 
     public void deconnecter()
     {
         robot.deconnecter();
+        utilisateurConnecté = null;
     }
 
 

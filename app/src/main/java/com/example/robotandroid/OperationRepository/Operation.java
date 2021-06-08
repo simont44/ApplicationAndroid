@@ -6,47 +6,43 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Operation implements Serializable {
-    ArrayList<Tache> ListeTaches;
-    String titre;
+    ArrayList<Tache> listeTaches;
+    String id;
     String description;
 
-    public int nbTaches;
-
-    public Operation(String titre, String description)
+    public Operation(String id, String description)
     {
-        this.titre = titre;
+        this.id = id;
         this.description = description;
-        ListeTaches = new ArrayList<Tache>();
+        listeTaches = new ArrayList<Tache>();
     }
 
 
     public void AjouterTache(Tache t)
     {
-        ListeTaches.add(t);
-        nbTaches++;
+        listeTaches.add(t);
     }
 
 
     public void SupprimerTache(Tache t)
     {
-        ListeTaches.remove(t);
-        nbTaches--;
+        listeTaches.remove(t);
     }
 
     public ArrayList<Tache> getListeTaches() {
-        return ListeTaches;
+        return listeTaches;
     }
 
     public void setListeTaches(ArrayList<Tache> listeTaches) {
-        ListeTaches = listeTaches;
+        this.listeTaches = listeTaches;
     }
 
-    public String getTitre() {
-        return titre;
+    public String getId() {
+        return id;
     }
 
-    public void setTitre(String titre) {
-        this.titre = titre;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getDescription() {

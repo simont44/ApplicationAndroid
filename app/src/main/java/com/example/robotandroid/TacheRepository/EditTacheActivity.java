@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.robotandroid.AbstractActivity;
@@ -20,6 +21,7 @@ public class EditTacheActivity extends AbstractActivity {
     //Affichage et edition d'une seule tache.
     private RadioButton buttonTurn;
     private RadioButton buttonWait;
+    private Spinner dropdownMoteur;
     private TextView textValue;
 
     private Operation operation;
@@ -42,10 +44,11 @@ public class EditTacheActivity extends AbstractActivity {
         buttonTurn = findViewById(R.id.radioButton_turn);
         buttonWait = findViewById(R.id.radioButton_wait);
         textValue = findViewById(R.id.editTextNumber_valeurTache);
+        dropdownMoteur = findViewById(R.id.dropdownMoteur);
 
-        buttonTurn.setChecked(tache.typeAction.equals(Tache.TypeAction.Tourner));
-        buttonWait.setChecked(tache.typeAction.equals(Tache.TypeAction.Attendre));
-        textValue.setText(String.valueOf(tache.valeur));
+        buttonTurn.setChecked(tache.getTypeAction().equals(Tache.TypeAction.Tourner));
+        buttonWait.setChecked(tache.getTypeAction().equals(Tache.TypeAction.Attendre));
+        textValue.setText(String.valueOf(tache.getValeur()));
         ImageButton buttonRetourOpe = findViewById(R.id.imagebutton_retourOpération);
         buttonRetourOpe.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +61,24 @@ public class EditTacheActivity extends AbstractActivity {
             @Override
             public void onClick(View v) {
                 ValiderEdition();
+            }
+        });
+
+        RadioButton radioTourner = findViewById(R.id.radioButton_turn);
+        radioTourner.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v) {
+                findViewById(R.id.dropdownMoteur).setEnabled(true);
+            }
+        });
+
+        RadioButton radioAttendre = findViewById(R.id.radioButton_wait);
+        radioAttendre.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v) {
+                findViewById(R.id.dropdownMoteur).setEnabled(false);
             }
         });
     }
@@ -73,11 +94,12 @@ public class EditTacheActivity extends AbstractActivity {
     public void ValiderEdition()
     {
         //Sauvegarde de la tache à faire
-        tache.valeur = Integer.parseInt(textValue.getText().toString());
+        tache.setValeur(Integer.parseInt(textValue.getText().toString()));
         if(buttonTurn.isChecked()){
-            tache.typeAction = Tache.TypeAction.Tourner;
+            tache.setTypeAction(Tache.TypeAction.Tourner);
+            tache.setMoteur(dropdownMoteur.getSelectedItem().toString().charAt(0));
         }else{
-            tache.typeAction = Tache.TypeAction.Attendre;
+            tache.setTypeAction(Tache.TypeAction.Attendre);
         }
 
         RetourMenuOpe();
