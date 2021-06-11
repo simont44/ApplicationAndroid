@@ -23,6 +23,9 @@ import java.io.IOException;
 public class AbstractActivity extends AppCompatActivity {
     protected Controleur controleur;
 
+    //L'Abstract Activity sert de même base pour tous les autres activity et pour la sauvegarde d'une liste de gammes à envoyer au robot à l'aide d'un pop up
+    //La sauvegarde par Pop-Up n'a pas été retenu, et a été implémenté par défaut après clic du bouton terminé Gamme
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

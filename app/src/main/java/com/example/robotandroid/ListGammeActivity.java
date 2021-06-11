@@ -19,6 +19,7 @@ import java.util.List;
 
 public class ListGammeActivity extends AbstractActivity {
 
+    //L'activity ListGamme permet d'afficher la liste de gamme sauvegardée et d'y ajouter une gamme
     public static ArrayList<Gamme> ListeGamme = new ArrayList<Gamme>();
 
     private RecyclerView GammeRecyclerView;

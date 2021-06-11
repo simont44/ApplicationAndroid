@@ -7,6 +7,7 @@ import android.widget.Spinner;
 public class CustomSpinner extends androidx.appcompat.widget.AppCompatSpinner {
     OnItemSelectedListener listener;
 
+    //Classe permettant l'affichage de la liste déroulante des interfaces wifi disponibles
     public CustomSpinner(Context context, AttributeSet attrs) {
         super(context, attrs);
     }

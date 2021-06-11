@@ -21,7 +21,7 @@ import com.example.robotandroid.TacheRepository.Tache;
 import com.example.robotandroid.TacheRepository.TacheAdapter;
 
 public class EditOperationActivity extends AbstractActivity {
-
+//Activity permettant au meme titre que EditGammeActivity d'éditer une opération.
     private TextView TitreOperation;
     private TextView DescriptionOperation;
     private RecyclerView tacheRecyclerView;
@@ -31,13 +31,16 @@ public class EditOperationActivity extends AbstractActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //On affiche la vue permettant la création d'opération
         setContentView(R.layout.activity_create_operation);
         tacheRecyclerView = findViewById(R.id.recyclerView_listetâche);
 
         int numOpe = getIntent().getIntExtra("numOpe",-2);
         System.out.println(numOpe);
+        //on récupère l'opération envoyé par la fonction CreateOperation() dans EditGammeActivity
         operation = controleur.gammeEnCreation.getListeOperations().get(numOpe);
 
+        //Declaration des boutons avec actions associées
         Button buttonCreateTache = findViewById(R.id.button_createTache);
         buttonCreateTache.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +54,8 @@ public class EditOperationActivity extends AbstractActivity {
             public void onClick(View v) {
                 Intent menuGamme = new Intent(getApplicationContext(), EditGammeActivity.class);
 
+                //Comme pour la sauvegarde des gammes, on applique la contrainte, chaque opération doit avoir une tâche
+                //On génère un pop up permettant la création de la tâche ou la suppression de l'opération.
                 if(operation.listeTaches.size()==0) {
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(EditOperationActivity.this);
                     alertDialogBuilder.setMessage("L'Opération n'a pas de tâche. Vous devez en créer au moins une avant de la sauvegarder");
@@ -78,6 +83,8 @@ public class EditOperationActivity extends AbstractActivity {
                 }
             }
         });
+
+        //On récupère les informations enregistrées.
         TitreOperation = findViewById(R.id.editText_Titreoperation);
         DescriptionOperation = findViewById(R.id.editText_descriptionOperation);
         this.TitreOperation.setText(operation.id);
@@ -110,6 +117,7 @@ public class EditOperationActivity extends AbstractActivity {
         operation.id = ((TextView) findViewById(R.id.editText_Titreoperation)).getText().toString();
         operation.description = ((TextView) findViewById(R.id.editText_descriptionOperation)).getText().toString();
 
+        //on transmet les informations de l'opération et la tâches créée à l'écran EditTacheActivity
         menutache.putExtra("numOpe", controleur.gammeEnCreation.getListeOperations().indexOf(operation));
         menutache.putExtra("numTache",operation.getListeTaches().indexOf(tache));
 
@@ -124,7 +132,6 @@ public class EditOperationActivity extends AbstractActivity {
 
     @Override
     protected void onStop() {
-        //this.SauvegarderOperation();
         super.onStop();
     }
 }

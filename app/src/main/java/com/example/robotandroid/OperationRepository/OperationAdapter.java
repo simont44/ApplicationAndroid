@@ -33,7 +33,7 @@ public class OperationAdapter  extends RecyclerView.Adapter<OperationViewHolder>
     }
 
     public void onBindViewHolder(OperationViewHolder holder, int position) {
-        // on charge l'item graphic, on dit ce qu'il faut afficher dans l'item.
+        // on charge l'item graphique, on dit ce qu'il faut afficher dans l'item.
         holder.UpdateVisual(ListOperation.get(position),this.gamme);
     }
 

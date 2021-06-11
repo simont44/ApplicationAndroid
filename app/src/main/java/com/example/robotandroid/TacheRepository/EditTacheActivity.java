@@ -34,6 +34,8 @@ public class EditTacheActivity extends AbstractActivity {
 
         setContentView(R.layout.activity_menu_tache);
 
+        //Déclaration et instanciation des boutons, opération et tache
+
         //uneoperation = (Operation) getIntent().getSerializableExtra("extraope");
         //tache = (Tache) getIntent().getSerializableExtra("extratache");
         int numOpe = getIntent().getIntExtra("numOpe",-2);
@@ -91,9 +93,9 @@ public class EditTacheActivity extends AbstractActivity {
         finish();
     }
 
+    //Sauvegarde de la tache
     public void ValiderEdition()
     {
-        //Sauvegarde de la tache à faire
         tache.setValeur(Integer.parseInt(textValue.getText().toString()));
         if(buttonTurn.isChecked()){
             tache.setTypeAction(Tache.TypeAction.Tourner);

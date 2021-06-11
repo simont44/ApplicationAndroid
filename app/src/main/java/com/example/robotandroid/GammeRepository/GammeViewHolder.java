@@ -14,7 +14,7 @@ import com.example.robotandroid.ListGammeActivity;
 import com.example.robotandroid.R;
 
 public class GammeViewHolder extends RecyclerView.ViewHolder {
-
+//Le Gamme view Holder est la vue qui represente un item de la liste Gamme.
     private Gamme gamme;
     private TextView TextViewGamme;
     private Button ButtonUpdate;
@@ -41,6 +41,7 @@ public class GammeViewHolder extends RecyclerView.ViewHolder {
         this.gamme = gamme;
     }
 
+    //Pour chaque item Gamme, on propose 3 boutons, Editer, Supprimer, Executer qui après intéractions vont faire appel aux fonctions correspondantes.
     public void UpdateVisual(Gamme unegamme)
     {
         ButtonUpdate.setOnClickListener(new View.OnClickListener() {

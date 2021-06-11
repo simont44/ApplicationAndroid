@@ -36,7 +36,7 @@ public class TacheAdapter extends RecyclerView.Adapter<TacheViewHolder>  {
     }
 
     public void onBindViewHolder(TacheViewHolder holder, int position) {
-        // on charge l'item graphic, on dit ce qu'il faut afficher dans l'item.
+        // on charge l'item graphique, on dit ce qu'il faut afficher dans l'item.
         holder.UpdateVisual(listTaches.get(position),operation, gamme);
     }
 

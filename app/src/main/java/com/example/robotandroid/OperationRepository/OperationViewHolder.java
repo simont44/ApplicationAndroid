@@ -20,6 +20,7 @@ public class OperationViewHolder extends RecyclerView.ViewHolder {
     private Button buttonDelete;
     private Gamme gamme;
 
+//Pour chaque opération, on instancie deux boutons "Editer" ou "supprimer"
 
     public OperationViewHolder(View itemView) {
         super(itemView);

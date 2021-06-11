@@ -20,7 +20,7 @@ public class GammeAdapter extends RecyclerView.Adapter<GammeViewHolder> {
 
     }
 
-    //Liste entière des items Gammes
+    //On retourne la Liste entière des items Gammes
     @Override
     public GammeViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
         Context context = parent.getContext();
@@ -31,7 +31,7 @@ public class GammeAdapter extends RecyclerView.Adapter<GammeViewHolder> {
 
     @Override
     public void onBindViewHolder(GammeViewHolder holder, int position) {
-    // on charge l'item graphic, on dit ce qu'il faut afficher dans l'item.
+    // on charge l'item graphique, on dit ce qu'il faut afficher dans l'item.
         holder.UpdateVisual(ListGammeActivity.ListeGamme.get(position));
     }
 

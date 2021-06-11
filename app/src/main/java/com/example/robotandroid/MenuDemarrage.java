@@ -15,7 +15,7 @@ import java.util.List;
 
 public class MenuDemarrage extends AbstractActivity {
 
-
+//Activity par défaut implémentant l'ensemble des premieres actions : Mode manuel, Mode Panne, Mode Automatique, Connexion et Liste Gamme
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         IRobot robot = new WifiListener();
@@ -79,13 +79,14 @@ public class MenuDemarrage extends AbstractActivity {
             }
         });
     }
+    //On génère la liste par défaut du programme, il reste à prendre en charge le chargement d'une liste de gamme sauvegardée.
     public void OpenMenuGamme()
     {
         //TODO : ListeGammeActivity.listeGammes = controleur.recupererGammes();
        Intent menu = new Intent(this, ListGammeActivity.class);
        startActivity(menu);
     }
-
+// On renvoie vers la liste des appareils Wifi .
     public void OpenListeAppareilWifi(){
         Intent listeAppareilWifi = new Intent(this, listeAppareilWifi.class);
         startActivity(listeAppareilWifi);

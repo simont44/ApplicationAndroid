@@ -30,14 +30,15 @@ public class TacheViewHolder extends RecyclerView.ViewHolder {
         buttonSuppr = itemView.findViewById(R.id.widget_tache_suppr_button);
     }
 
-    public Tache getUneoperation() {
+    public Tache getUnetache() {
         return tache;
     }
 
-    public void setUneoperation(Tache tache) {
+    public void setUneTache(Tache tache) {
         this.tache = tache;
     }
 
+    //Pour chaque item tache, on peut uniquement le supprimer
     public void UpdateVisual(Tache tache, Operation operation, Gamme gamme)
     {
 
@@ -53,6 +54,8 @@ public class TacheViewHolder extends RecyclerView.ViewHolder {
         textViewValue.setText(tache.getValeur() + "");
         textViewTypeAction.setText(tache.getTypeAction().toString());
     }
+
+    //On supprime la tache de l'opération et envoie l'opération modifié à l'écran EditOperationActivity.
     public void SupprimerTache(){
 
         operation.SupprimerTache(this.tache);
