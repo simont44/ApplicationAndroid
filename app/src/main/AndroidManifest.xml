@@ -38,9 +38,6 @@
         <activity android:name=".listeAppareilWifi">
 
         </activity>
-        <activity android:name=".connexionActivity">
-
-        </activity>
     </application>
 
 </manifest>

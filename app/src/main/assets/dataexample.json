@@ -1,0 +1,1 @@
+{"description":"Test rotation","id":"1","listeOperations":[{"ListeTaches":[{"typeAction":"Tourner","valeur":12},{"typeAction":"Attendre","valeur":5}]},{"ListeTaches":[{"typeAction":"Tourner","valeur":24}]}]}
