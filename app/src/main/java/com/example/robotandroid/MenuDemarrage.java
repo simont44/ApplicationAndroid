@@ -23,6 +23,7 @@ public class MenuDemarrage extends AbstractActivity {
 
         super.onCreate(savedInstanceState);
 
+        //On instancie les boutons avec le renvoi vers les fonctions/actions
         setContentView(R.layout.activity_menu_demarrage);
         Button buttonGamme = findViewById(R.id.buttonGamme);
         buttonGamme.setOnClickListener(new View.OnClickListener() {

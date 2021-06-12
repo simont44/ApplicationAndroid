@@ -20,6 +20,7 @@ import java.util.concurrent.Future;
 
 public class WifiListener implements IRobot
 {
+
     Socket socket;
 
     private Future listenThread, sendThread;
@@ -29,7 +30,7 @@ public class WifiListener implements IRobot
     BufferedReader in;
     BufferedWriter out;
 
-
+//Methode envoyant la nouvelle gamme créée au robot pour sauvegarde
     @Override
     public void creerGamme(Gamme g)
     {
@@ -40,17 +41,21 @@ public class WifiListener implements IRobot
         envoyerMessage(gson.toJson(json));
     }
 
+    //Methode modifiant une gamme et doit écraser l'ancienne version sauvegardé côté robot.
+    //L'ancienne méthode GoToEditerGamme est trouvable dans GammeViewHolder
     @Override
     public void modifierGamme(Gamme g) {
 
     }
 
+    //Methode supprimant une gamme dans la liste sauvegardée côté robot
+    //L'ancienne méthode SupprimerGamme est trouvable dans GammeViewHolder
     @Override
     public void supprimerGamme(Gamme g) {
 
     }
 
-
+//On envoi la gamme a executer côté Robot
     @Override
     public void executerGamme(String idGamme)
     {
@@ -60,11 +65,13 @@ public class WifiListener implements IRobot
         envoyerMessage(new Gson().toJson(json));
     }
 
+    //Methodes à implémenter pour récupération d'une liste de gamme
     @Override
     public HashMap<String, Gamme> recupererGammes() {
         return null;
     }
 
+    //On envoie les données de connexion au robot.
     @Override
     public void connecter(String login, String pwd)
     {
@@ -75,6 +82,7 @@ public class WifiListener implements IRobot
         envoyerMessage(new Gson().toJson(json));
     }
 
+    //On ferme la connexion au robot
     @Override
     public void deconnecter()
     {
@@ -87,10 +95,18 @@ public class WifiListener implements IRobot
         }
     }
 
+    // TODO : Méthode de création de compte à implémenter
+    // Renseigner le login et le mot de passe, le login doit être unique
+    // L'utilisateur connecté doit être administrateur
     @Override
     public void creerCompte(String login, String pwd) {
 
     }
+
+    //TODO : Méthode de suppression de compte à implémenter
+    // renseigner le login de l'utilisateur à supprimer
+    // le login doit être différent de celui connecté
+    // l'utilisateur connecté doit être administrateur
 
     @Override
     public void supprimerCompte(String login) {
@@ -127,14 +143,15 @@ public class WifiListener implements IRobot
         });
     }
 
-
+//On ouvre la connexion au port du robot et la garde ouverte tant qu'il n'y a pas d'action de deconnexion
     @Override
     public void ouvrir(String ip) {
         listenThread = this.listenExecService.submit(new Runnable()
         {
             public void run()
             {
-                int port = 80;
+                //On renseigne le port en dur, il doit être identique à celui indiqué côté robot.
+                int port = 2048;
                 try {
                     socket = new Socket(ip, port);
                     in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -158,6 +175,7 @@ public class WifiListener implements IRobot
         });
     }
 
+    //On ferme la connexion
     @Override
     public void fermer() {
         try {

@@ -41,16 +41,19 @@ public class listeAppareilWifi extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         controleur = Controleur.getInstance();
-        System.out.println("DEBUG");
+//        System.out.println("DEBUG");
+//        On récupère les valeurs des textView du layout activity_liste_appareil_wifi.
         setContentView(R.layout.activity_liste_appareil_wifi);
         etatWifiTextView = (TextView)findViewById(R.id.etatWifi);
         etatScanTextView =(TextView)findViewById(R.id.etatScan);
         this.listeAppareilWifiSpinner = (CustomSpinner)findViewById(R.id.spinnerListeAppareilWifi);
         devices = new ArrayList<Device>();
-        findSubnetDevices();    //On lance la méthode qui récupère la liste des appareils connectés
+        findSubnetDevices();    //On lance la méthode qui récupère la liste des appareils connectés au même Wifi
         ArrayAdapter<Device> adapterDevice = new ArrayAdapter<Device>(this, android.R.layout.simple_spinner_dropdown_item,devices);
         adapterDevice.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.listeAppareilWifiSpinner.setAdapter(adapterDevice);
+
+        //On récupère l'appareil selectionné et lance la connexion
 
         this.listeAppareilWifiSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -68,6 +71,7 @@ public class listeAppareilWifi extends AppCompatActivity {
             }
         });
 
+        //Gestion de la Connexion Utilisateur après clic sur le bouton.
         Button buttonConnecter = (Button) findViewById((R.id.buttonConnecter));
         buttonConnecter.setOnClickListener(new View.OnClickListener()
         {
@@ -76,17 +80,19 @@ public class listeAppareilWifi extends AppCompatActivity {
                 EditText login = (EditText) findViewById(R.id.textLogin);
                 EditText pwd = (EditText) findViewById(R.id.textPwd);
 
+                //On envoi les données de connexion au robot par le controleur.
+                //Si l'utilisateur n'est pas connecté, les messages envoyés au robot sont refusés.
                 controleur.connecter(login.getText().toString(), pwd.getText().toString());
             }
         });
     }
-
 
     private void onItemSelectedHandler(AdapterView<?>adapterView,View view,int position,long id){
         Adapter adapter = adapterView.getAdapter();
         Device device = (Device)adapter.getItem(position);
     }
 
+    //On récupère tous les appareils connectés au même wifi
     private void findSubnetDevices() {
 
         final long startTimeMillis = System.currentTimeMillis();
@@ -122,9 +128,7 @@ public class listeAppareilWifi extends AppCompatActivity {
 
     }
 
-
-
-
+    //Methode non utilisée, pour lire l'état du Wifi.
     private String readtvWifiState(WifiManager wm){
         String result = "";
         switch (wm.getWifiState()){

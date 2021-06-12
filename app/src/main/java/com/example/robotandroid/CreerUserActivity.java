@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 public class CreerUserActivity extends AppCompatActivity {
 
+    //Activity à instancier pour gérer la création des comptes utilisateurs
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -68,12 +68,16 @@ public class GammeViewHolder extends RecyclerView.ViewHolder {
         });
     }
     //On envoie sur l'activité de création en donnant les fichiers en paramètres
+    //Fonctionne localement mais pas après connexion au robot
+    //Obsolete fonctionne avec une liste de gamme instanciée côté android
     public  void GoToEditerGamme()
     {
         Intent menuEdit = new Intent(TextViewGamme.getContext(), EditGammeActivity.class);
         menuEdit.putExtra("extragamme",this.gamme);
         itemView.getContext().startActivity(menuEdit);
     }
+    //Fonction de suppression fonctionnant localement mais pas après connexion au robot
+    //Obsolete : Fonctionne avec une liste de gamme instanciée côté android
     public void SupprimerGamme()
     {
         ListGammeActivity.ListeGamme.remove(this.gamme);
